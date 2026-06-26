@@ -152,7 +152,7 @@ gtkwave alu.vcd
 
 The following waveform shows the ALU simulation results.
 
-![GTKWave Simulation](Pasted\ image.png)
+![GTKWave Simulation](Assignment1.png)
 
 ---
 
