@@ -163,7 +163,7 @@ The following waveform shows the ALU simulation results.
 ├── alu.v
 ├── alu_tb.v
 ├── alu.vcd
-├── gtkwave.png
+├── Assignment1.png
 └── README.md
 ```
 
