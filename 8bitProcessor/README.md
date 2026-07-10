@@ -115,22 +115,6 @@ takes the hex file to load and the expected result as *runtime* plusargs,
 not compile-time parameters, so you compile once and re-run as many times
 as you like:
 
-```bash
-cd cpu8
-
-# compile once
-iverilog -g2012 -o sim.out rtl/alu8.v rtl/memory8.v rtl/control_unit.v rtl/cpu8.v tb/tb_cpu8.v
-
-# run it against program.hex
-vvp sim.out +HEXFILE=sw/program.hex  +EXPECTED=15 +TESTNAME=sum_1_to_5
-
-# run the exact same binary against a completely different program
-vvp sim.out +HEXFILE=sw/program2.hex +EXPECTED=20 +TESTNAME=call_ret_stack
-```
-
-Or just run `./run_tests.sh`, which does both of the above for you:
-
-```
 Running sw/program.hex  (loop sum 1..5, expect out_port=15)
 CPU halted after 209 clock cycles
 OUT_PORT  = 15 (0x0f)
