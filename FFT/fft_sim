@@ -1,0 +1,1516 @@
+#! /usr/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2009.vpi";
+S_0x6165dbd5c770 .scope package, "$unit" "$unit" 2 1;
+ .timescale 0 0;
+S_0x6165dbd5b980 .scope module, "fft_tb" "fft_tb" 3 1;
+ .timescale 0 0;
+P_0x6165dbd0d2a0 .param/l "DATA_WIDTH" 1 3 4, +C4<00000000000000000000000000010000>;
+P_0x6165dbd0d2e0 .param/l "LOG2N" 1 3 5, +C4<00000000000000000000000000000011>;
+P_0x6165dbd0d320 .param/l "N" 1 3 3, +C4<00000000000000000000000000001000>;
+P_0x6165dbd0d360 .param/real "SCALE" 1 3 6, Cr<m4000000000000000gfd1>; value=32768.0
+v0x6165dbd9e5b0_0 .net "busy", 0 0, v0x6165dbd9cd10_0;  1 drivers
+v0x6165dbd9e670_0 .var "clk", 0 0;
+v0x6165dbd9e710_0 .var/s "data_in_im", 127 0;
+v0x6165dbd9e7e0_0 .var/s "data_in_re", 127 0;
+v0x6165dbd9e8b0_0 .net/s "data_out_im", 127 0, v0x6165dbd9d050_0;  1 drivers
+v0x6165dbd9e9a0_0 .net/s "data_out_re", 127 0, v0x6165dbd9d180_0;  1 drivers
+v0x6165dbd9ea70_0 .net "done", 0 0, v0x6165dbd9d260_0;  1 drivers
+v0x6165dbd9eb40_0 .var/i "fh", 31 0;
+v0x6165dbd9ebe0_0 .var/i "i", 31 0;
+v0x6165dbd9ec80_0 .var "rst_n", 0 0;
+v0x6165dbd9ed50 .array/real "sample_im", 7 0;
+v0x6165dbd9edf0 .array/real "sample_re", 7 0;
+v0x6165dbd9ee90_0 .var "start", 0 0;
+S_0x6165dbd5ab90 .scope module, "dut" "fft_top" 3 25, 4 1 0, S_0x6165dbd5b980;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst_n";
+    .port_info 2 /INPUT 1 "start";
+    .port_info 3 /INPUT 128 "data_in_re";
+    .port_info 4 /INPUT 128 "data_in_im";
+    .port_info 5 /OUTPUT 128 "data_out_re";
+    .port_info 6 /OUTPUT 128 "data_out_im";
+    .port_info 7 /OUTPUT 1 "done";
+    .port_info 8 /OUTPUT 1 "busy";
+P_0x6165dbcfb470 .param/l "DATA_WIDTH" 0 4 3, +C4<00000000000000000000000000010000>;
+P_0x6165dbcfb4b0 .param/l "LOG2N" 0 4 4, +C4<00000000000000000000000000000011>;
+P_0x6165dbcfb4f0 .param/l "N" 0 4 2, +C4<00000000000000000000000000001000>;
+P_0x6165dbcfb530 .param/l "S_COMPUTE" 1 4 22, C4<010>;
+P_0x6165dbcfb570 .param/l "S_DONE" 1 4 25, C4<101>;
+P_0x6165dbcfb5b0 .param/l "S_IDLE" 1 4 20, C4<000>;
+P_0x6165dbcfb5f0 .param/l "S_LOAD" 1 4 21, C4<001>;
+P_0x6165dbcfb630 .param/l "S_NEXT" 1 4 23, C4<011>;
+P_0x6165dbcfb670 .param/l "S_OUTPUT" 1 4 24, C4<100>;
+v0x6165dbd9cd10_0 .var "busy", 0 0;
+v0x6165dbd9cdf0_0 .net "clk", 0 0, v0x6165dbd9e670_0;  1 drivers
+v0x6165dbd9ceb0_0 .net/s "data_in_im", 127 0, v0x6165dbd9e710_0;  1 drivers
+v0x6165dbd9cf70_0 .net/s "data_in_re", 127 0, v0x6165dbd9e7e0_0;  1 drivers
+v0x6165dbd9d050_0 .var/s "data_out_im", 127 0;
+v0x6165dbd9d180_0 .var/s "data_out_re", 127 0;
+v0x6165dbd9d260_0 .var "done", 0 0;
+v0x6165dbd9d320_0 .var/i "i", 31 0;
+v0x6165dbd9d400 .array/s "mem_im", 7 0, 15 0;
+v0x6165dbd9d4c0 .array/s "mem_re", 7 0, 15 0;
+v0x6165dbd9d580_0 .net "rst_n", 0 0, v0x6165dbd9ec80_0;  1 drivers
+v0x6165dbd9d640_0 .var "stage", 1 0;
+v0x6165dbd9d720_0 .net "start", 0 0, v0x6165dbd9ee90_0;  1 drivers
+v0x6165dbd9d7e0_0 .var "state", 2 0;
+v0x6165dbd9d8c0_0 .var/i "t", 31 0;
+v0x6165dbd9d9a0 .array/s "twiddle_im", 3 0, 15 0;
+v0x6165dbd9da60 .array/s "twiddle_re", 3 0, 15 0;
+E_0x6165dbcfe490/0 .event negedge, v0x6165dbd9d580_0;
+E_0x6165dbcfe490/1 .event posedge, v0x6165dbd9cdf0_0;
+E_0x6165dbcfe490 .event/or E_0x6165dbcfe490/0, E_0x6165dbcfe490/1;
+S_0x6165dbd59da0 .scope generate, "BUTTERFLIES[0]" "BUTTERFLIES[0]" 4 71, 4 71 0, S_0x6165dbd5ab90;
+ .timescale 0 0;
+P_0x6165dbcdfd50 .param/l "b" 1 4 71, +C4<00>;
+L_0x7300e16ce0a8 .functor BUFT 1, C4<000>, C4<0>, C4<0>, C4<0>;
+L_0x6165dbd10c50 .functor AND 3, L_0x7300e16ce0a8, L_0x6165dbdaf500, C4<111>, C4<111>;
+L_0x6165dbdaff90 .functor BUFZ 16, L_0x6165dbdb02b0, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+L_0x6165dbd10f30 .functor BUFZ 16, L_0x6165dbdb0570, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+L_0x6165dbd11710 .functor BUFZ 16, L_0x6165dbdb0880, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+L_0x6165dbd60ca0 .functor BUFZ 16, L_0x6165dbdb0790, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+L_0x6165dbd4ca60 .functor BUFZ 16, L_0x6165dbdb0e30, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+L_0x6165dbd38820 .functor BUFZ 16, L_0x6165dbdb11c0, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+L_0x7300e16ce018 .functor BUFT 1, C4<001>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd72540_0 .net/2s *"_ivl_0", 2 0, L_0x7300e16ce018;  1 drivers
+v0x6165dbd10db0_0 .net/2s *"_ivl_10", 2 0, L_0x7300e16ce0a8;  1 drivers
+v0x6165dbd11090_0 .net/s *"_ivl_100", 31 0, L_0x6165dbdb15c0;  1 drivers
+v0x6165dbd118b0_0 .net/s *"_ivl_104", 31 0, L_0x6165dbdb18e0;  1 drivers
+v0x6165dbd66130_0 .net/s *"_ivl_106", 31 0, L_0x6165dbdb1ad0;  1 drivers
+v0x6165dbd51ef0_0 .net/s *"_ivl_110", 31 0, L_0x6165dbdb1e10;  1 drivers
+v0x6165dbd3dcb0_0 .net/s *"_ivl_112", 31 0, L_0x6165dbdb1eb0;  1 drivers
+v0x6165dbd89e20_0 .net/s *"_ivl_116", 31 0, L_0x6165dbdb21b0;  1 drivers
+v0x6165dbd89f00_0 .net/s *"_ivl_118", 31 0, L_0x6165dbdb1f50;  1 drivers
+L_0x7300e16ce0f0 .functor BUFT 1, C4<001>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd89fe0_0 .net/2s *"_ivl_12", 2 0, L_0x7300e16ce0f0;  1 drivers
+v0x6165dbd8a0c0_0 .net/s *"_ivl_122", 31 0, L_0x6165dbdb25b0;  1 drivers
+v0x6165dbd8a1a0_0 .net *"_ivl_124", 31 0, L_0x6165dbdb2930;  1 drivers
+v0x6165dbd8a280_0 .net *"_ivl_126", 16 0, L_0x6165dbdb26f0;  1 drivers
+v0x6165dbd8a360_0 .net/s *"_ivl_130", 31 0, L_0x6165dbdb2c70;  1 drivers
+v0x6165dbd8a440_0 .net *"_ivl_132", 31 0, L_0x6165dbdb3010;  1 drivers
+v0x6165dbd8a520_0 .net *"_ivl_134", 16 0, L_0x6165dbdb2db0;  1 drivers
+v0x6165dbd8a600_0 .net/s *"_ivl_138", 15 0, L_0x6165dbdb3370;  1 drivers
+v0x6165dbd8a6e0_0 .net *"_ivl_14", 2 0, L_0x6165dbdaf360;  1 drivers
+v0x6165dbd8a7c0_0 .net *"_ivl_142", 14 0, L_0x6165dbdb34b0;  1 drivers
+v0x6165dbd8a8a0_0 .net/s *"_ivl_144", 15 0, L_0x6165dbdb3820;  1 drivers
+v0x6165dbd8a980_0 .net *"_ivl_148", 14 0, L_0x6165dbdb3b00;  1 drivers
+v0x6165dbd8aa60_0 .net/s *"_ivl_150", 15 0, L_0x6165dbdb3e90;  1 drivers
+v0x6165dbd8ab40_0 .net *"_ivl_154", 14 0, L_0x6165dbdb3f30;  1 drivers
+v0x6165dbd8ac20_0 .net/s *"_ivl_156", 15 0, L_0x6165dbdb42d0;  1 drivers
+L_0x7300e16ce138 .functor BUFT 1, C4<001>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd8ad00_0 .net/2s *"_ivl_16", 2 0, L_0x7300e16ce138;  1 drivers
+v0x6165dbd8ade0_0 .net *"_ivl_160", 14 0, L_0x6165dbdb4540;  1 drivers
+v0x6165dbd8aec0_0 .net/s *"_ivl_18", 2 0, L_0x6165dbdaf500;  1 drivers
+v0x6165dbd8afa0_0 .net *"_ivl_22", 31 0, L_0x6165dbdaf6e0;  1 drivers
+L_0x7300e16ce180 .functor BUFT 1, C4<000000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd8b080_0 .net *"_ivl_25", 29 0, L_0x7300e16ce180;  1 drivers
+L_0x7300e16ce1c8 .functor BUFT 1, C4<00000000000000000000000000000001>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd8b160_0 .net/2u *"_ivl_26", 31 0, L_0x7300e16ce1c8;  1 drivers
+v0x6165dbd8b240_0 .net *"_ivl_28", 31 0, L_0x6165dbdaf7c0;  1 drivers
+v0x6165dbd8b320_0 .net *"_ivl_30", 2 0, L_0x6165dbdaf900;  1 drivers
+L_0x7300e16ce210 .functor BUFT 1, C4<00000000000000000000000000000011>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd8b400_0 .net/2u *"_ivl_36", 31 0, L_0x7300e16ce210;  1 drivers
+v0x6165dbd8b4e0_0 .net *"_ivl_38", 31 0, L_0x6165dbdafd70;  1 drivers
+L_0x7300e16ce060 .functor BUFT 1, C4<00000000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd8b5c0_0 .net/2s *"_ivl_4", 31 0, L_0x7300e16ce060;  1 drivers
+L_0x7300e16ce258 .functor BUFT 1, C4<000000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd8b6a0_0 .net *"_ivl_41", 29 0, L_0x7300e16ce258;  1 drivers
+v0x6165dbd8b780_0 .net *"_ivl_42", 31 0, L_0x6165dbdafea0;  1 drivers
+L_0x7300e16ce2a0 .functor BUFT 1, C4<00000000000000000000000000000001>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd8b860_0 .net/2u *"_ivl_44", 31 0, L_0x7300e16ce2a0;  1 drivers
+v0x6165dbd8b940_0 .net *"_ivl_46", 31 0, L_0x6165dbdb0000;  1 drivers
+v0x6165dbd8ba20_0 .net *"_ivl_50", 15 0, L_0x6165dbdb02b0;  1 drivers
+v0x6165dbd8bb00_0 .net *"_ivl_52", 4 0, L_0x6165dbdb0350;  1 drivers
+L_0x7300e16ce2e8 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd8bbe0_0 .net *"_ivl_55", 1 0, L_0x7300e16ce2e8;  1 drivers
+v0x6165dbd8bcc0_0 .net *"_ivl_58", 15 0, L_0x6165dbdb0570;  1 drivers
+v0x6165dbd8bda0_0 .net *"_ivl_6", 31 0, L_0x6165dbdaf0d0;  1 drivers
+v0x6165dbd8be80_0 .net *"_ivl_60", 4 0, L_0x6165dbdb0610;  1 drivers
+L_0x7300e16ce330 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd8bf60_0 .net *"_ivl_63", 1 0, L_0x7300e16ce330;  1 drivers
+v0x6165dbd8c040_0 .net *"_ivl_66", 15 0, L_0x6165dbdb0880;  1 drivers
+v0x6165dbd8c120_0 .net *"_ivl_68", 4 0, L_0x6165dbdb0920;  1 drivers
+L_0x7300e16ce378 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd8c200_0 .net *"_ivl_71", 1 0, L_0x7300e16ce378;  1 drivers
+v0x6165dbd8c2e0_0 .net *"_ivl_74", 15 0, L_0x6165dbdb0790;  1 drivers
+v0x6165dbd8c3c0_0 .net *"_ivl_76", 4 0, L_0x6165dbdb0be0;  1 drivers
+L_0x7300e16ce3c0 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd8c4a0_0 .net *"_ivl_79", 1 0, L_0x7300e16ce3c0;  1 drivers
+v0x6165dbd8c580_0 .net *"_ivl_82", 15 0, L_0x6165dbdb0e30;  1 drivers
+v0x6165dbd8c660_0 .net *"_ivl_84", 3 0, L_0x6165dbdb0ed0;  1 drivers
+L_0x7300e16ce408 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd8c740_0 .net *"_ivl_87", 0 0, L_0x7300e16ce408;  1 drivers
+v0x6165dbd8c820_0 .net *"_ivl_90", 15 0, L_0x6165dbdb11c0;  1 drivers
+v0x6165dbd8c900_0 .net *"_ivl_92", 3 0, L_0x6165dbdb1260;  1 drivers
+L_0x7300e16ce450 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd8c9e0_0 .net *"_ivl_95", 0 0, L_0x7300e16ce450;  1 drivers
+v0x6165dbd8cac0_0 .net/s *"_ivl_98", 31 0, L_0x6165dbdb14d0;  1 drivers
+v0x6165dbd8cba0_0 .net/s "a_im", 15 0, L_0x6165dbd10f30;  1 drivers
+v0x6165dbd8cc80_0 .net/s "a_re", 15 0, L_0x6165dbdaff90;  1 drivers
+v0x6165dbd8cd60_0 .net/s "b_im", 15 0, L_0x6165dbd60ca0;  1 drivers
+v0x6165dbd8ce40_0 .net/s "b_re", 15 0, L_0x6165dbd11710;  1 drivers
+v0x6165dbd8cf20_0 .net "group", 2 0, L_0x6165dbdaf240;  1 drivers
+v0x6165dbd8d000_0 .net "half_size", 2 0, L_0x6165dbd9ef90;  1 drivers
+v0x6165dbd8d0e0_0 .net "idx1", 2 0, L_0x6165dbdafa90;  1 drivers
+v0x6165dbd8d1c0_0 .net "idx2", 2 0, L_0x6165dbdafbd0;  1 drivers
+v0x6165dbd8d2a0_0 .net/s "mult_ii", 31 0, L_0x6165dbdb1bc0;  1 drivers
+v0x6165dbd8d380_0 .net/s "mult_ir", 31 0, L_0x6165dbdb2380;  1 drivers
+v0x6165dbd8d460_0 .net/s "mult_ri", 31 0, L_0x6165dbdb2070;  1 drivers
+v0x6165dbd8d540_0 .net/s "mult_rr", 31 0, L_0x6165dbdb17a0;  1 drivers
+v0x6165dbd8d620_0 .net "pos", 2 0, L_0x6165dbd10c50;  1 drivers
+v0x6165dbd8d700_0 .net "tw_idx", 2 0, L_0x6165dbdb0140;  1 drivers
+v0x6165dbd8d7e0_0 .net/s "w_im", 15 0, L_0x6165dbd38820;  1 drivers
+v0x6165dbd8d8c0_0 .net/s "w_re", 15 0, L_0x6165dbd4ca60;  1 drivers
+v0x6165dbd8d9a0_0 .net/s "wb_im", 15 0, L_0x6165dbdb3100;  1 drivers
+v0x6165dbd8da80_0 .net/s "wb_re", 15 0, L_0x6165dbdb2a20;  1 drivers
+v0x6165dbd8db60_0 .net/s "x_im", 15 0, L_0x6165dbdb3bf0;  1 drivers
+v0x6165dbd8dc40_0 .net/s "x_re", 15 0, L_0x6165dbdb3730;  1 drivers
+v0x6165dbd8dd20_0 .net/s "y_im", 15 0, L_0x6165dbdb4630;  1 drivers
+v0x6165dbd8de00_0 .net/s "y_re", 15 0, L_0x6165dbdb41e0;  1 drivers
+E_0x6165dbcfc460 .event posedge, v0x6165dbd9cdf0_0;
+L_0x6165dbd9ef90 .shift/l 3, L_0x7300e16ce018, v0x6165dbd9d640_0;
+L_0x6165dbdaf0d0 .shift/r 32, L_0x7300e16ce060, v0x6165dbd9d640_0;
+L_0x6165dbdaf240 .part L_0x6165dbdaf0d0, 0, 3;
+L_0x6165dbdaf360 .shift/l 3, L_0x7300e16ce0f0, v0x6165dbd9d640_0;
+L_0x6165dbdaf500 .arith/sub 3, L_0x6165dbdaf360, L_0x7300e16ce138;
+L_0x6165dbdaf6e0 .concat [ 2 30 0 0], v0x6165dbd9d640_0, L_0x7300e16ce180;
+L_0x6165dbdaf7c0 .arith/sum 32, L_0x6165dbdaf6e0, L_0x7300e16ce1c8;
+L_0x6165dbdaf900 .shift/l 3, L_0x6165dbdaf240, L_0x6165dbdaf7c0;
+L_0x6165dbdafa90 .arith/sum 3, L_0x6165dbdaf900, L_0x6165dbd10c50;
+L_0x6165dbdafbd0 .arith/sum 3, L_0x6165dbdafa90, L_0x6165dbd9ef90;
+L_0x6165dbdafd70 .concat [ 2 30 0 0], v0x6165dbd9d640_0, L_0x7300e16ce258;
+L_0x6165dbdafea0 .arith/sub 32, L_0x7300e16ce210, L_0x6165dbdafd70;
+L_0x6165dbdb0000 .arith/sub 32, L_0x6165dbdafea0, L_0x7300e16ce2a0;
+L_0x6165dbdb0140 .shift/l 3, L_0x6165dbd10c50, L_0x6165dbdb0000;
+L_0x6165dbdb02b0 .array/port v0x6165dbd9d4c0, L_0x6165dbdb0350;
+L_0x6165dbdb0350 .concat [ 3 2 0 0], L_0x6165dbdafa90, L_0x7300e16ce2e8;
+L_0x6165dbdb0570 .array/port v0x6165dbd9d400, L_0x6165dbdb0610;
+L_0x6165dbdb0610 .concat [ 3 2 0 0], L_0x6165dbdafa90, L_0x7300e16ce330;
+L_0x6165dbdb0880 .array/port v0x6165dbd9d4c0, L_0x6165dbdb0920;
+L_0x6165dbdb0920 .concat [ 3 2 0 0], L_0x6165dbdafbd0, L_0x7300e16ce378;
+L_0x6165dbdb0790 .array/port v0x6165dbd9d400, L_0x6165dbdb0be0;
+L_0x6165dbdb0be0 .concat [ 3 2 0 0], L_0x6165dbdafbd0, L_0x7300e16ce3c0;
+L_0x6165dbdb0e30 .array/port v0x6165dbd9da60, L_0x6165dbdb0ed0;
+L_0x6165dbdb0ed0 .concat [ 3 1 0 0], L_0x6165dbdb0140, L_0x7300e16ce408;
+L_0x6165dbdb11c0 .array/port v0x6165dbd9d9a0, L_0x6165dbdb1260;
+L_0x6165dbdb1260 .concat [ 3 1 0 0], L_0x6165dbdb0140, L_0x7300e16ce450;
+L_0x6165dbdb14d0 .extend/s 32, L_0x6165dbd4ca60;
+L_0x6165dbdb15c0 .extend/s 32, L_0x6165dbd11710;
+L_0x6165dbdb17a0 .arith/mult 32, L_0x6165dbdb14d0, L_0x6165dbdb15c0;
+L_0x6165dbdb18e0 .extend/s 32, L_0x6165dbd38820;
+L_0x6165dbdb1ad0 .extend/s 32, L_0x6165dbd60ca0;
+L_0x6165dbdb1bc0 .arith/mult 32, L_0x6165dbdb18e0, L_0x6165dbdb1ad0;
+L_0x6165dbdb1e10 .extend/s 32, L_0x6165dbd4ca60;
+L_0x6165dbdb1eb0 .extend/s 32, L_0x6165dbd60ca0;
+L_0x6165dbdb2070 .arith/mult 32, L_0x6165dbdb1e10, L_0x6165dbdb1eb0;
+L_0x6165dbdb21b0 .extend/s 32, L_0x6165dbd38820;
+L_0x6165dbdb1f50 .extend/s 32, L_0x6165dbd11710;
+L_0x6165dbdb2380 .arith/mult 32, L_0x6165dbdb21b0, L_0x6165dbdb1f50;
+L_0x6165dbdb25b0 .arith/sub 32, L_0x6165dbdb17a0, L_0x6165dbdb1bc0;
+L_0x6165dbdb26f0 .part L_0x6165dbdb25b0, 15, 17;
+L_0x6165dbdb2930 .extend/s 32, L_0x6165dbdb26f0;
+L_0x6165dbdb2a20 .part L_0x6165dbdb2930, 0, 16;
+L_0x6165dbdb2c70 .arith/sum 32, L_0x6165dbdb2070, L_0x6165dbdb2380;
+L_0x6165dbdb2db0 .part L_0x6165dbdb2c70, 15, 17;
+L_0x6165dbdb3010 .extend/s 32, L_0x6165dbdb2db0;
+L_0x6165dbdb3100 .part L_0x6165dbdb3010, 0, 16;
+L_0x6165dbdb3370 .arith/sum 16, L_0x6165dbdaff90, L_0x6165dbdb2a20;
+L_0x6165dbdb34b0 .part L_0x6165dbdb3370, 1, 15;
+L_0x6165dbdb3730 .extend/s 16, L_0x6165dbdb34b0;
+L_0x6165dbdb3820 .arith/sum 16, L_0x6165dbd10f30, L_0x6165dbdb3100;
+L_0x6165dbdb3b00 .part L_0x6165dbdb3820, 1, 15;
+L_0x6165dbdb3bf0 .extend/s 16, L_0x6165dbdb3b00;
+L_0x6165dbdb3e90 .arith/sub 16, L_0x6165dbdaff90, L_0x6165dbdb2a20;
+L_0x6165dbdb3f30 .part L_0x6165dbdb3e90, 1, 15;
+L_0x6165dbdb41e0 .extend/s 16, L_0x6165dbdb3f30;
+L_0x6165dbdb42d0 .arith/sub 16, L_0x6165dbd10f30, L_0x6165dbdb3100;
+L_0x6165dbdb4540 .part L_0x6165dbdb42d0, 1, 15;
+L_0x6165dbdb4630 .extend/s 16, L_0x6165dbdb4540;
+S_0x6165dbd8dee0 .scope generate, "BUTTERFLIES[1]" "BUTTERFLIES[1]" 4 71, 4 71 0, S_0x6165dbd5ab90;
+ .timescale 0 0;
+P_0x6165dbd8e0b0 .param/l "b" 1 4 71, +C4<01>;
+L_0x7300e16ce528 .functor BUFT 1, C4<001>, C4<0>, C4<0>, C4<0>;
+L_0x6165dbd71eb0 .functor AND 3, L_0x7300e16ce528, L_0x6165dbdb4e00, C4<111>, C4<111>;
+L_0x6165dbdb5940 .functor BUFZ 16, L_0x6165dbdb5be0, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+L_0x6165dbdb51e0 .functor BUFZ 16, L_0x6165dbdb5ea0, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+L_0x6165dbdb6400 .functor BUFZ 16, L_0x6165dbdb6120, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+L_0x6165dbdb66f0 .functor BUFZ 16, L_0x6165dbdb6030, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+L_0x6165dbdb6ab0 .functor BUFZ 16, L_0x6165dbdb67b0, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+L_0x6165dbdb6e70 .functor BUFZ 16, L_0x6165dbdb6bb0, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+L_0x7300e16ce498 .functor BUFT 1, C4<001>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd8e170_0 .net/2s *"_ivl_0", 2 0, L_0x7300e16ce498;  1 drivers
+v0x6165dbd8e250_0 .net/2s *"_ivl_10", 2 0, L_0x7300e16ce528;  1 drivers
+v0x6165dbd8e330_0 .net/s *"_ivl_100", 31 0, L_0x6165dbdb7020;  1 drivers
+v0x6165dbd8e3f0_0 .net/s *"_ivl_104", 31 0, L_0x6165dbdb7340;  1 drivers
+v0x6165dbd8e4d0_0 .net/s *"_ivl_106", 31 0, L_0x6165dbdb7530;  1 drivers
+v0x6165dbd8e600_0 .net/s *"_ivl_110", 31 0, L_0x6165dbdb7870;  1 drivers
+v0x6165dbd8e6e0_0 .net/s *"_ivl_112", 31 0, L_0x6165dbdb7910;  1 drivers
+v0x6165dbd8e7c0_0 .net/s *"_ivl_116", 31 0, L_0x6165dbdb7c10;  1 drivers
+v0x6165dbd8e8a0_0 .net/s *"_ivl_118", 31 0, L_0x6165dbdb79b0;  1 drivers
+L_0x7300e16ce570 .functor BUFT 1, C4<001>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd8e980_0 .net/2s *"_ivl_12", 2 0, L_0x7300e16ce570;  1 drivers
+v0x6165dbd8ea60_0 .net/s *"_ivl_122", 31 0, L_0x6165dbdb8010;  1 drivers
+v0x6165dbd8eb40_0 .net *"_ivl_124", 31 0, L_0x6165dbdb8400;  1 drivers
+v0x6165dbd8ec20_0 .net *"_ivl_126", 16 0, L_0x6165dbdb81c0;  1 drivers
+v0x6165dbd8ed00_0 .net/s *"_ivl_130", 31 0, L_0x6165dbdb8740;  1 drivers
+v0x6165dbd8ede0_0 .net *"_ivl_132", 31 0, L_0x6165dbdb8ae0;  1 drivers
+v0x6165dbd8eec0_0 .net *"_ivl_134", 16 0, L_0x6165dbdb8880;  1 drivers
+v0x6165dbd8efa0_0 .net/s *"_ivl_138", 15 0, L_0x6165dbdb8e40;  1 drivers
+v0x6165dbd8f080_0 .net *"_ivl_14", 2 0, L_0x6165dbdb4bd0;  1 drivers
+v0x6165dbd8f160_0 .net *"_ivl_142", 14 0, L_0x6165dbdb8f80;  1 drivers
+v0x6165dbd8f240_0 .net/s *"_ivl_144", 15 0, L_0x6165dbdb92f0;  1 drivers
+v0x6165dbd8f320_0 .net *"_ivl_148", 14 0, L_0x6165dbdb95d0;  1 drivers
+v0x6165dbd8f400_0 .net/s *"_ivl_150", 15 0, L_0x6165dbdb9960;  1 drivers
+v0x6165dbd8f4e0_0 .net *"_ivl_154", 14 0, L_0x6165dbdb9a00;  1 drivers
+v0x6165dbd8f5c0_0 .net/s *"_ivl_156", 15 0, L_0x6165dbdb9da0;  1 drivers
+L_0x7300e16ce5b8 .functor BUFT 1, C4<001>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd8f6a0_0 .net/2s *"_ivl_16", 2 0, L_0x7300e16ce5b8;  1 drivers
+v0x6165dbd8f780_0 .net *"_ivl_160", 14 0, L_0x6165dbdba010;  1 drivers
+v0x6165dbd8f860_0 .net/s *"_ivl_18", 2 0, L_0x6165dbdb4e00;  1 drivers
+v0x6165dbd8f940_0 .net *"_ivl_22", 31 0, L_0x6165dbdb5010;  1 drivers
+L_0x7300e16ce600 .functor BUFT 1, C4<000000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd8fa20_0 .net *"_ivl_25", 29 0, L_0x7300e16ce600;  1 drivers
+L_0x7300e16ce648 .functor BUFT 1, C4<00000000000000000000000000000001>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd8fb00_0 .net/2u *"_ivl_26", 31 0, L_0x7300e16ce648;  1 drivers
+v0x6165dbd8fbe0_0 .net *"_ivl_28", 31 0, L_0x6165dbdb5140;  1 drivers
+v0x6165dbd8fcc0_0 .net *"_ivl_30", 2 0, L_0x6165dbdb52f0;  1 drivers
+L_0x7300e16ce690 .functor BUFT 1, C4<00000000000000000000000000000011>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd8fda0_0 .net/2u *"_ivl_36", 31 0, L_0x7300e16ce690;  1 drivers
+v0x6165dbd8fe80_0 .net *"_ivl_38", 31 0, L_0x6165dbdb5760;  1 drivers
+L_0x7300e16ce4e0 .functor BUFT 1, C4<00000000000000000000000000000001>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd8ff60_0 .net/2s *"_ivl_4", 31 0, L_0x7300e16ce4e0;  1 drivers
+L_0x7300e16ce6d8 .functor BUFT 1, C4<000000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd90040_0 .net *"_ivl_41", 29 0, L_0x7300e16ce6d8;  1 drivers
+v0x6165dbd90120_0 .net *"_ivl_42", 31 0, L_0x6165dbdb5800;  1 drivers
+L_0x7300e16ce720 .functor BUFT 1, C4<00000000000000000000000000000001>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd90200_0 .net/2u *"_ivl_44", 31 0, L_0x7300e16ce720;  1 drivers
+v0x6165dbd902e0_0 .net *"_ivl_46", 31 0, L_0x6165dbdb59b0;  1 drivers
+v0x6165dbd903c0_0 .net *"_ivl_50", 15 0, L_0x6165dbdb5be0;  1 drivers
+v0x6165dbd904a0_0 .net *"_ivl_52", 4 0, L_0x6165dbdb5c80;  1 drivers
+L_0x7300e16ce768 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd90580_0 .net *"_ivl_55", 1 0, L_0x7300e16ce768;  1 drivers
+v0x6165dbd90660_0 .net *"_ivl_58", 15 0, L_0x6165dbdb5ea0;  1 drivers
+v0x6165dbd90740_0 .net *"_ivl_6", 31 0, L_0x6165dbdb49f0;  1 drivers
+v0x6165dbd90820_0 .net *"_ivl_60", 4 0, L_0x6165dbdb5f40;  1 drivers
+L_0x7300e16ce7b0 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd90900_0 .net *"_ivl_63", 1 0, L_0x7300e16ce7b0;  1 drivers
+v0x6165dbd909e0_0 .net *"_ivl_66", 15 0, L_0x6165dbdb6120;  1 drivers
+v0x6165dbd90ac0_0 .net *"_ivl_68", 4 0, L_0x6165dbdb61c0;  1 drivers
+L_0x7300e16ce7f8 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd90ba0_0 .net *"_ivl_71", 1 0, L_0x7300e16ce7f8;  1 drivers
+v0x6165dbd90c80_0 .net *"_ivl_74", 15 0, L_0x6165dbdb6030;  1 drivers
+v0x6165dbd90d60_0 .net *"_ivl_76", 4 0, L_0x6165dbdb64f0;  1 drivers
+L_0x7300e16ce840 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd90e40_0 .net *"_ivl_79", 1 0, L_0x7300e16ce840;  1 drivers
+v0x6165dbd90f20_0 .net *"_ivl_82", 15 0, L_0x6165dbdb67b0;  1 drivers
+v0x6165dbd91000_0 .net *"_ivl_84", 3 0, L_0x6165dbdb6850;  1 drivers
+L_0x7300e16ce888 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd910e0_0 .net *"_ivl_87", 0 0, L_0x7300e16ce888;  1 drivers
+v0x6165dbd911c0_0 .net *"_ivl_90", 15 0, L_0x6165dbdb6bb0;  1 drivers
+v0x6165dbd912a0_0 .net *"_ivl_92", 3 0, L_0x6165dbdb6c50;  1 drivers
+L_0x7300e16ce8d0 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd91380_0 .net *"_ivl_95", 0 0, L_0x7300e16ce8d0;  1 drivers
+v0x6165dbd91460_0 .net/s *"_ivl_98", 31 0, L_0x6165dbdb6f30;  1 drivers
+v0x6165dbd91540_0 .net/s "a_im", 15 0, L_0x6165dbdb51e0;  1 drivers
+v0x6165dbd91620_0 .net/s "a_re", 15 0, L_0x6165dbdb5940;  1 drivers
+v0x6165dbd91700_0 .net/s "b_im", 15 0, L_0x6165dbdb66f0;  1 drivers
+v0x6165dbd917e0_0 .net/s "b_re", 15 0, L_0x6165dbdb6400;  1 drivers
+v0x6165dbd918c0_0 .net "group", 2 0, L_0x6165dbdb4ae0;  1 drivers
+v0x6165dbd919a0_0 .net "half_size", 2 0, L_0x6165dbdb4900;  1 drivers
+v0x6165dbd91e70_0 .net "idx1", 2 0, L_0x6165dbdb5480;  1 drivers
+v0x6165dbd91f50_0 .net "idx2", 2 0, L_0x6165dbdb55c0;  1 drivers
+v0x6165dbd92030_0 .net/s "mult_ii", 31 0, L_0x6165dbdb7620;  1 drivers
+v0x6165dbd92110_0 .net/s "mult_ir", 31 0, L_0x6165dbdb7de0;  1 drivers
+v0x6165dbd921f0_0 .net/s "mult_ri", 31 0, L_0x6165dbdb7ad0;  1 drivers
+v0x6165dbd922d0_0 .net/s "mult_rr", 31 0, L_0x6165dbdb7200;  1 drivers
+v0x6165dbd923b0_0 .net "pos", 2 0, L_0x6165dbd71eb0;  1 drivers
+v0x6165dbd92490_0 .net "tw_idx", 2 0, L_0x6165dbdb5af0;  1 drivers
+v0x6165dbd92570_0 .net/s "w_im", 15 0, L_0x6165dbdb6e70;  1 drivers
+v0x6165dbd92650_0 .net/s "w_re", 15 0, L_0x6165dbdb6ab0;  1 drivers
+v0x6165dbd92730_0 .net/s "wb_im", 15 0, L_0x6165dbdb8bd0;  1 drivers
+v0x6165dbd92810_0 .net/s "wb_re", 15 0, L_0x6165dbdb84f0;  1 drivers
+v0x6165dbd928f0_0 .net/s "x_im", 15 0, L_0x6165dbdb96c0;  1 drivers
+v0x6165dbd929d0_0 .net/s "x_re", 15 0, L_0x6165dbdb9200;  1 drivers
+v0x6165dbd92ab0_0 .net/s "y_im", 15 0, L_0x6165dbdba100;  1 drivers
+v0x6165dbd92b90_0 .net/s "y_re", 15 0, L_0x6165dbdb9cb0;  1 drivers
+L_0x6165dbdb4900 .shift/l 3, L_0x7300e16ce498, v0x6165dbd9d640_0;
+L_0x6165dbdb49f0 .shift/r 32, L_0x7300e16ce4e0, v0x6165dbd9d640_0;
+L_0x6165dbdb4ae0 .part L_0x6165dbdb49f0, 0, 3;
+L_0x6165dbdb4bd0 .shift/l 3, L_0x7300e16ce570, v0x6165dbd9d640_0;
+L_0x6165dbdb4e00 .arith/sub 3, L_0x6165dbdb4bd0, L_0x7300e16ce5b8;
+L_0x6165dbdb5010 .concat [ 2 30 0 0], v0x6165dbd9d640_0, L_0x7300e16ce600;
+L_0x6165dbdb5140 .arith/sum 32, L_0x6165dbdb5010, L_0x7300e16ce648;
+L_0x6165dbdb52f0 .shift/l 3, L_0x6165dbdb4ae0, L_0x6165dbdb5140;
+L_0x6165dbdb5480 .arith/sum 3, L_0x6165dbdb52f0, L_0x6165dbd71eb0;
+L_0x6165dbdb55c0 .arith/sum 3, L_0x6165dbdb5480, L_0x6165dbdb4900;
+L_0x6165dbdb5760 .concat [ 2 30 0 0], v0x6165dbd9d640_0, L_0x7300e16ce6d8;
+L_0x6165dbdb5800 .arith/sub 32, L_0x7300e16ce690, L_0x6165dbdb5760;
+L_0x6165dbdb59b0 .arith/sub 32, L_0x6165dbdb5800, L_0x7300e16ce720;
+L_0x6165dbdb5af0 .shift/l 3, L_0x6165dbd71eb0, L_0x6165dbdb59b0;
+L_0x6165dbdb5be0 .array/port v0x6165dbd9d4c0, L_0x6165dbdb5c80;
+L_0x6165dbdb5c80 .concat [ 3 2 0 0], L_0x6165dbdb5480, L_0x7300e16ce768;
+L_0x6165dbdb5ea0 .array/port v0x6165dbd9d400, L_0x6165dbdb5f40;
+L_0x6165dbdb5f40 .concat [ 3 2 0 0], L_0x6165dbdb5480, L_0x7300e16ce7b0;
+L_0x6165dbdb6120 .array/port v0x6165dbd9d4c0, L_0x6165dbdb61c0;
+L_0x6165dbdb61c0 .concat [ 3 2 0 0], L_0x6165dbdb55c0, L_0x7300e16ce7f8;
+L_0x6165dbdb6030 .array/port v0x6165dbd9d400, L_0x6165dbdb64f0;
+L_0x6165dbdb64f0 .concat [ 3 2 0 0], L_0x6165dbdb55c0, L_0x7300e16ce840;
+L_0x6165dbdb67b0 .array/port v0x6165dbd9da60, L_0x6165dbdb6850;
+L_0x6165dbdb6850 .concat [ 3 1 0 0], L_0x6165dbdb5af0, L_0x7300e16ce888;
+L_0x6165dbdb6bb0 .array/port v0x6165dbd9d9a0, L_0x6165dbdb6c50;
+L_0x6165dbdb6c50 .concat [ 3 1 0 0], L_0x6165dbdb5af0, L_0x7300e16ce8d0;
+L_0x6165dbdb6f30 .extend/s 32, L_0x6165dbdb6ab0;
+L_0x6165dbdb7020 .extend/s 32, L_0x6165dbdb6400;
+L_0x6165dbdb7200 .arith/mult 32, L_0x6165dbdb6f30, L_0x6165dbdb7020;
+L_0x6165dbdb7340 .extend/s 32, L_0x6165dbdb6e70;
+L_0x6165dbdb7530 .extend/s 32, L_0x6165dbdb66f0;
+L_0x6165dbdb7620 .arith/mult 32, L_0x6165dbdb7340, L_0x6165dbdb7530;
+L_0x6165dbdb7870 .extend/s 32, L_0x6165dbdb6ab0;
+L_0x6165dbdb7910 .extend/s 32, L_0x6165dbdb66f0;
+L_0x6165dbdb7ad0 .arith/mult 32, L_0x6165dbdb7870, L_0x6165dbdb7910;
+L_0x6165dbdb7c10 .extend/s 32, L_0x6165dbdb6e70;
+L_0x6165dbdb79b0 .extend/s 32, L_0x6165dbdb6400;
+L_0x6165dbdb7de0 .arith/mult 32, L_0x6165dbdb7c10, L_0x6165dbdb79b0;
+L_0x6165dbdb8010 .arith/sub 32, L_0x6165dbdb7200, L_0x6165dbdb7620;
+L_0x6165dbdb81c0 .part L_0x6165dbdb8010, 15, 17;
+L_0x6165dbdb8400 .extend/s 32, L_0x6165dbdb81c0;
+L_0x6165dbdb84f0 .part L_0x6165dbdb8400, 0, 16;
+L_0x6165dbdb8740 .arith/sum 32, L_0x6165dbdb7ad0, L_0x6165dbdb7de0;
+L_0x6165dbdb8880 .part L_0x6165dbdb8740, 15, 17;
+L_0x6165dbdb8ae0 .extend/s 32, L_0x6165dbdb8880;
+L_0x6165dbdb8bd0 .part L_0x6165dbdb8ae0, 0, 16;
+L_0x6165dbdb8e40 .arith/sum 16, L_0x6165dbdb5940, L_0x6165dbdb84f0;
+L_0x6165dbdb8f80 .part L_0x6165dbdb8e40, 1, 15;
+L_0x6165dbdb9200 .extend/s 16, L_0x6165dbdb8f80;
+L_0x6165dbdb92f0 .arith/sum 16, L_0x6165dbdb51e0, L_0x6165dbdb8bd0;
+L_0x6165dbdb95d0 .part L_0x6165dbdb92f0, 1, 15;
+L_0x6165dbdb96c0 .extend/s 16, L_0x6165dbdb95d0;
+L_0x6165dbdb9960 .arith/sub 16, L_0x6165dbdb5940, L_0x6165dbdb84f0;
+L_0x6165dbdb9a00 .part L_0x6165dbdb9960, 1, 15;
+L_0x6165dbdb9cb0 .extend/s 16, L_0x6165dbdb9a00;
+L_0x6165dbdb9da0 .arith/sub 16, L_0x6165dbdb51e0, L_0x6165dbdb8bd0;
+L_0x6165dbdba010 .part L_0x6165dbdb9da0, 1, 15;
+L_0x6165dbdba100 .extend/s 16, L_0x6165dbdba010;
+S_0x6165dbd92c70 .scope generate, "BUTTERFLIES[2]" "BUTTERFLIES[2]" 4 71, 4 71 0, S_0x6165dbd5ab90;
+ .timescale 0 0;
+P_0x6165dbd92e20 .param/l "b" 1 4 71, +C4<010>;
+L_0x7300e16ce9a8 .functor BUFT 1, C4<010>, C4<0>, C4<0>, C4<0>;
+L_0x6165dbdb80b0 .functor AND 3, L_0x7300e16ce9a8, L_0x6165dbdba7c0, C4<111>, C4<111>;
+L_0x6165dbdbb300 .functor BUFZ 16, L_0x6165dbdbb5a0, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+L_0x6165dbdbaba0 .functor BUFZ 16, L_0x6165dbdbb860, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+L_0x6165dbdbbdc0 .functor BUFZ 16, L_0x6165dbdbbae0, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+L_0x6165dbdbc0b0 .functor BUFZ 16, L_0x6165dbdbb9f0, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+L_0x6165dbdbc470 .functor BUFZ 16, L_0x6165dbdbc170, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+L_0x6165dbdbc830 .functor BUFZ 16, L_0x6165dbdbc570, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+L_0x7300e16ce918 .functor BUFT 1, C4<001>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd92ee0_0 .net/2s *"_ivl_0", 2 0, L_0x7300e16ce918;  1 drivers
+v0x6165dbd92fc0_0 .net/2s *"_ivl_10", 2 0, L_0x7300e16ce9a8;  1 drivers
+v0x6165dbd930a0_0 .net/s *"_ivl_100", 31 0, L_0x6165dbdbc9e0;  1 drivers
+v0x6165dbd93160_0 .net/s *"_ivl_104", 31 0, L_0x6165dbdbcd00;  1 drivers
+v0x6165dbd93240_0 .net/s *"_ivl_106", 31 0, L_0x6165dbdbcef0;  1 drivers
+v0x6165dbd93370_0 .net/s *"_ivl_110", 31 0, L_0x6165dbdbd230;  1 drivers
+v0x6165dbd93450_0 .net/s *"_ivl_112", 31 0, L_0x6165dbdbd2d0;  1 drivers
+v0x6165dbd93530_0 .net/s *"_ivl_116", 31 0, L_0x6165dbdbd5d0;  1 drivers
+v0x6165dbd93610_0 .net/s *"_ivl_118", 31 0, L_0x6165dbdbd370;  1 drivers
+L_0x7300e16ce9f0 .functor BUFT 1, C4<001>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd936f0_0 .net/2s *"_ivl_12", 2 0, L_0x7300e16ce9f0;  1 drivers
+v0x6165dbd937d0_0 .net/s *"_ivl_122", 31 0, L_0x6165dbdbd9d0;  1 drivers
+v0x6165dbd938b0_0 .net *"_ivl_124", 31 0, L_0x6165dbdbddc0;  1 drivers
+v0x6165dbd93990_0 .net *"_ivl_126", 16 0, L_0x6165dbdbdb80;  1 drivers
+v0x6165dbd93a70_0 .net/s *"_ivl_130", 31 0, L_0x6165dbdbe100;  1 drivers
+v0x6165dbd93b50_0 .net *"_ivl_132", 31 0, L_0x6165dbdbe4a0;  1 drivers
+v0x6165dbd93c30_0 .net *"_ivl_134", 16 0, L_0x6165dbdbe240;  1 drivers
+v0x6165dbd93d10_0 .net/s *"_ivl_138", 15 0, L_0x6165dbdbe800;  1 drivers
+v0x6165dbd93df0_0 .net *"_ivl_14", 2 0, L_0x6165dbdba6a0;  1 drivers
+v0x6165dbd93ed0_0 .net *"_ivl_142", 14 0, L_0x6165dbdbe940;  1 drivers
+v0x6165dbd93fb0_0 .net/s *"_ivl_144", 15 0, L_0x6165dbdbecb0;  1 drivers
+v0x6165dbd94090_0 .net *"_ivl_148", 14 0, L_0x6165dbdbef90;  1 drivers
+v0x6165dbd94170_0 .net/s *"_ivl_150", 15 0, L_0x6165dbdbf320;  1 drivers
+v0x6165dbd94250_0 .net *"_ivl_154", 14 0, L_0x6165dbdbf3c0;  1 drivers
+v0x6165dbd94330_0 .net/s *"_ivl_156", 15 0, L_0x6165dbdbf760;  1 drivers
+L_0x7300e16cea38 .functor BUFT 1, C4<001>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd94410_0 .net/2s *"_ivl_16", 2 0, L_0x7300e16cea38;  1 drivers
+v0x6165dbd944f0_0 .net *"_ivl_160", 14 0, L_0x6165dbdbf9d0;  1 drivers
+v0x6165dbd945d0_0 .net/s *"_ivl_18", 2 0, L_0x6165dbdba7c0;  1 drivers
+v0x6165dbd946b0_0 .net *"_ivl_22", 31 0, L_0x6165dbdba9d0;  1 drivers
+L_0x7300e16cea80 .functor BUFT 1, C4<000000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd94790_0 .net *"_ivl_25", 29 0, L_0x7300e16cea80;  1 drivers
+L_0x7300e16ceac8 .functor BUFT 1, C4<00000000000000000000000000000001>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd94870_0 .net/2u *"_ivl_26", 31 0, L_0x7300e16ceac8;  1 drivers
+v0x6165dbd94950_0 .net *"_ivl_28", 31 0, L_0x6165dbdbab00;  1 drivers
+v0x6165dbd94a30_0 .net *"_ivl_30", 2 0, L_0x6165dbdbacb0;  1 drivers
+L_0x7300e16ceb10 .functor BUFT 1, C4<00000000000000000000000000000011>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd94b10_0 .net/2u *"_ivl_36", 31 0, L_0x7300e16ceb10;  1 drivers
+v0x6165dbd94bf0_0 .net *"_ivl_38", 31 0, L_0x6165dbdbb120;  1 drivers
+L_0x7300e16ce960 .functor BUFT 1, C4<00000000000000000000000000000010>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd94cd0_0 .net/2s *"_ivl_4", 31 0, L_0x7300e16ce960;  1 drivers
+L_0x7300e16ceb58 .functor BUFT 1, C4<000000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd94db0_0 .net *"_ivl_41", 29 0, L_0x7300e16ceb58;  1 drivers
+v0x6165dbd94e90_0 .net *"_ivl_42", 31 0, L_0x6165dbdbb1c0;  1 drivers
+L_0x7300e16ceba0 .functor BUFT 1, C4<00000000000000000000000000000001>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd94f70_0 .net/2u *"_ivl_44", 31 0, L_0x7300e16ceba0;  1 drivers
+v0x6165dbd95050_0 .net *"_ivl_46", 31 0, L_0x6165dbdbb370;  1 drivers
+v0x6165dbd95130_0 .net *"_ivl_50", 15 0, L_0x6165dbdbb5a0;  1 drivers
+v0x6165dbd95210_0 .net *"_ivl_52", 4 0, L_0x6165dbdbb640;  1 drivers
+L_0x7300e16cebe8 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd952f0_0 .net *"_ivl_55", 1 0, L_0x7300e16cebe8;  1 drivers
+v0x6165dbd953d0_0 .net *"_ivl_58", 15 0, L_0x6165dbdbb860;  1 drivers
+v0x6165dbd954b0_0 .net *"_ivl_6", 31 0, L_0x6165dbdba4c0;  1 drivers
+v0x6165dbd95590_0 .net *"_ivl_60", 4 0, L_0x6165dbdbb900;  1 drivers
+L_0x7300e16cec30 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd95670_0 .net *"_ivl_63", 1 0, L_0x7300e16cec30;  1 drivers
+v0x6165dbd95750_0 .net *"_ivl_66", 15 0, L_0x6165dbdbbae0;  1 drivers
+v0x6165dbd95830_0 .net *"_ivl_68", 4 0, L_0x6165dbdbbb80;  1 drivers
+L_0x7300e16cec78 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd95910_0 .net *"_ivl_71", 1 0, L_0x7300e16cec78;  1 drivers
+v0x6165dbd959f0_0 .net *"_ivl_74", 15 0, L_0x6165dbdbb9f0;  1 drivers
+v0x6165dbd95ad0_0 .net *"_ivl_76", 4 0, L_0x6165dbdbbeb0;  1 drivers
+L_0x7300e16cecc0 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd95bb0_0 .net *"_ivl_79", 1 0, L_0x7300e16cecc0;  1 drivers
+v0x6165dbd95c90_0 .net *"_ivl_82", 15 0, L_0x6165dbdbc170;  1 drivers
+v0x6165dbd95d70_0 .net *"_ivl_84", 3 0, L_0x6165dbdbc210;  1 drivers
+L_0x7300e16ced08 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd95e50_0 .net *"_ivl_87", 0 0, L_0x7300e16ced08;  1 drivers
+v0x6165dbd95f30_0 .net *"_ivl_90", 15 0, L_0x6165dbdbc570;  1 drivers
+v0x6165dbd96010_0 .net *"_ivl_92", 3 0, L_0x6165dbdbc610;  1 drivers
+L_0x7300e16ced50 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd960f0_0 .net *"_ivl_95", 0 0, L_0x7300e16ced50;  1 drivers
+v0x6165dbd961d0_0 .net/s *"_ivl_98", 31 0, L_0x6165dbdbc8f0;  1 drivers
+v0x6165dbd962b0_0 .net/s "a_im", 15 0, L_0x6165dbdbaba0;  1 drivers
+v0x6165dbd96390_0 .net/s "a_re", 15 0, L_0x6165dbdbb300;  1 drivers
+v0x6165dbd96470_0 .net/s "b_im", 15 0, L_0x6165dbdbc0b0;  1 drivers
+v0x6165dbd96550_0 .net/s "b_re", 15 0, L_0x6165dbdbbdc0;  1 drivers
+v0x6165dbd96630_0 .net "group", 2 0, L_0x6165dbdba5b0;  1 drivers
+v0x6165dbd96710_0 .net "half_size", 2 0, L_0x6165dbdba3d0;  1 drivers
+v0x6165dbd96c00_0 .net "idx1", 2 0, L_0x6165dbdbae40;  1 drivers
+v0x6165dbd96ce0_0 .net "idx2", 2 0, L_0x6165dbdbaf80;  1 drivers
+v0x6165dbd96dc0_0 .net/s "mult_ii", 31 0, L_0x6165dbdbcfe0;  1 drivers
+v0x6165dbd96ea0_0 .net/s "mult_ir", 31 0, L_0x6165dbdbd7a0;  1 drivers
+v0x6165dbd96f80_0 .net/s "mult_ri", 31 0, L_0x6165dbdbd490;  1 drivers
+v0x6165dbd97060_0 .net/s "mult_rr", 31 0, L_0x6165dbdbcbc0;  1 drivers
+v0x6165dbd97140_0 .net "pos", 2 0, L_0x6165dbdb80b0;  1 drivers
+v0x6165dbd97220_0 .net "tw_idx", 2 0, L_0x6165dbdbb4b0;  1 drivers
+v0x6165dbd97300_0 .net/s "w_im", 15 0, L_0x6165dbdbc830;  1 drivers
+v0x6165dbd973e0_0 .net/s "w_re", 15 0, L_0x6165dbdbc470;  1 drivers
+v0x6165dbd974c0_0 .net/s "wb_im", 15 0, L_0x6165dbdbe590;  1 drivers
+v0x6165dbd975a0_0 .net/s "wb_re", 15 0, L_0x6165dbdbdeb0;  1 drivers
+v0x6165dbd97680_0 .net/s "x_im", 15 0, L_0x6165dbdbf080;  1 drivers
+v0x6165dbd97760_0 .net/s "x_re", 15 0, L_0x6165dbdbebc0;  1 drivers
+v0x6165dbd97840_0 .net/s "y_im", 15 0, L_0x6165dbdbfac0;  1 drivers
+v0x6165dbd97920_0 .net/s "y_re", 15 0, L_0x6165dbdbf670;  1 drivers
+L_0x6165dbdba3d0 .shift/l 3, L_0x7300e16ce918, v0x6165dbd9d640_0;
+L_0x6165dbdba4c0 .shift/r 32, L_0x7300e16ce960, v0x6165dbd9d640_0;
+L_0x6165dbdba5b0 .part L_0x6165dbdba4c0, 0, 3;
+L_0x6165dbdba6a0 .shift/l 3, L_0x7300e16ce9f0, v0x6165dbd9d640_0;
+L_0x6165dbdba7c0 .arith/sub 3, L_0x6165dbdba6a0, L_0x7300e16cea38;
+L_0x6165dbdba9d0 .concat [ 2 30 0 0], v0x6165dbd9d640_0, L_0x7300e16cea80;
+L_0x6165dbdbab00 .arith/sum 32, L_0x6165dbdba9d0, L_0x7300e16ceac8;
+L_0x6165dbdbacb0 .shift/l 3, L_0x6165dbdba5b0, L_0x6165dbdbab00;
+L_0x6165dbdbae40 .arith/sum 3, L_0x6165dbdbacb0, L_0x6165dbdb80b0;
+L_0x6165dbdbaf80 .arith/sum 3, L_0x6165dbdbae40, L_0x6165dbdba3d0;
+L_0x6165dbdbb120 .concat [ 2 30 0 0], v0x6165dbd9d640_0, L_0x7300e16ceb58;
+L_0x6165dbdbb1c0 .arith/sub 32, L_0x7300e16ceb10, L_0x6165dbdbb120;
+L_0x6165dbdbb370 .arith/sub 32, L_0x6165dbdbb1c0, L_0x7300e16ceba0;
+L_0x6165dbdbb4b0 .shift/l 3, L_0x6165dbdb80b0, L_0x6165dbdbb370;
+L_0x6165dbdbb5a0 .array/port v0x6165dbd9d4c0, L_0x6165dbdbb640;
+L_0x6165dbdbb640 .concat [ 3 2 0 0], L_0x6165dbdbae40, L_0x7300e16cebe8;
+L_0x6165dbdbb860 .array/port v0x6165dbd9d400, L_0x6165dbdbb900;
+L_0x6165dbdbb900 .concat [ 3 2 0 0], L_0x6165dbdbae40, L_0x7300e16cec30;
+L_0x6165dbdbbae0 .array/port v0x6165dbd9d4c0, L_0x6165dbdbbb80;
+L_0x6165dbdbbb80 .concat [ 3 2 0 0], L_0x6165dbdbaf80, L_0x7300e16cec78;
+L_0x6165dbdbb9f0 .array/port v0x6165dbd9d400, L_0x6165dbdbbeb0;
+L_0x6165dbdbbeb0 .concat [ 3 2 0 0], L_0x6165dbdbaf80, L_0x7300e16cecc0;
+L_0x6165dbdbc170 .array/port v0x6165dbd9da60, L_0x6165dbdbc210;
+L_0x6165dbdbc210 .concat [ 3 1 0 0], L_0x6165dbdbb4b0, L_0x7300e16ced08;
+L_0x6165dbdbc570 .array/port v0x6165dbd9d9a0, L_0x6165dbdbc610;
+L_0x6165dbdbc610 .concat [ 3 1 0 0], L_0x6165dbdbb4b0, L_0x7300e16ced50;
+L_0x6165dbdbc8f0 .extend/s 32, L_0x6165dbdbc470;
+L_0x6165dbdbc9e0 .extend/s 32, L_0x6165dbdbbdc0;
+L_0x6165dbdbcbc0 .arith/mult 32, L_0x6165dbdbc8f0, L_0x6165dbdbc9e0;
+L_0x6165dbdbcd00 .extend/s 32, L_0x6165dbdbc830;
+L_0x6165dbdbcef0 .extend/s 32, L_0x6165dbdbc0b0;
+L_0x6165dbdbcfe0 .arith/mult 32, L_0x6165dbdbcd00, L_0x6165dbdbcef0;
+L_0x6165dbdbd230 .extend/s 32, L_0x6165dbdbc470;
+L_0x6165dbdbd2d0 .extend/s 32, L_0x6165dbdbc0b0;
+L_0x6165dbdbd490 .arith/mult 32, L_0x6165dbdbd230, L_0x6165dbdbd2d0;
+L_0x6165dbdbd5d0 .extend/s 32, L_0x6165dbdbc830;
+L_0x6165dbdbd370 .extend/s 32, L_0x6165dbdbbdc0;
+L_0x6165dbdbd7a0 .arith/mult 32, L_0x6165dbdbd5d0, L_0x6165dbdbd370;
+L_0x6165dbdbd9d0 .arith/sub 32, L_0x6165dbdbcbc0, L_0x6165dbdbcfe0;
+L_0x6165dbdbdb80 .part L_0x6165dbdbd9d0, 15, 17;
+L_0x6165dbdbddc0 .extend/s 32, L_0x6165dbdbdb80;
+L_0x6165dbdbdeb0 .part L_0x6165dbdbddc0, 0, 16;
+L_0x6165dbdbe100 .arith/sum 32, L_0x6165dbdbd490, L_0x6165dbdbd7a0;
+L_0x6165dbdbe240 .part L_0x6165dbdbe100, 15, 17;
+L_0x6165dbdbe4a0 .extend/s 32, L_0x6165dbdbe240;
+L_0x6165dbdbe590 .part L_0x6165dbdbe4a0, 0, 16;
+L_0x6165dbdbe800 .arith/sum 16, L_0x6165dbdbb300, L_0x6165dbdbdeb0;
+L_0x6165dbdbe940 .part L_0x6165dbdbe800, 1, 15;
+L_0x6165dbdbebc0 .extend/s 16, L_0x6165dbdbe940;
+L_0x6165dbdbecb0 .arith/sum 16, L_0x6165dbdbaba0, L_0x6165dbdbe590;
+L_0x6165dbdbef90 .part L_0x6165dbdbecb0, 1, 15;
+L_0x6165dbdbf080 .extend/s 16, L_0x6165dbdbef90;
+L_0x6165dbdbf320 .arith/sub 16, L_0x6165dbdbb300, L_0x6165dbdbdeb0;
+L_0x6165dbdbf3c0 .part L_0x6165dbdbf320, 1, 15;
+L_0x6165dbdbf670 .extend/s 16, L_0x6165dbdbf3c0;
+L_0x6165dbdbf760 .arith/sub 16, L_0x6165dbdbaba0, L_0x6165dbdbe590;
+L_0x6165dbdbf9d0 .part L_0x6165dbdbf760, 1, 15;
+L_0x6165dbdbfac0 .extend/s 16, L_0x6165dbdbf9d0;
+S_0x6165dbd97a00 .scope generate, "BUTTERFLIES[3]" "BUTTERFLIES[3]" 4 71, 4 71 0, S_0x6165dbd5ab90;
+ .timescale 0 0;
+P_0x6165dbd97bb0 .param/l "b" 1 4 71, +C4<011>;
+L_0x7300e16cee28 .functor BUFT 1, C4<011>, C4<0>, C4<0>, C4<0>;
+L_0x6165dbdbda70 .functor AND 3, L_0x7300e16cee28, L_0x6165dbdc0390, C4<111>, C4<111>;
+L_0x6165dbdc0ed0 .functor BUFZ 16, L_0x6165dbdc1170, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+L_0x6165dbdc0770 .functor BUFZ 16, L_0x6165dbdc1430, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+L_0x6165dbdc1990 .functor BUFZ 16, L_0x6165dbdc16b0, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+L_0x6165dbdc1c80 .functor BUFZ 16, L_0x6165dbdc15c0, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+L_0x6165dbdc2040 .functor BUFZ 16, L_0x6165dbdc1d40, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+L_0x6165dbdc2400 .functor BUFZ 16, L_0x6165dbdc2140, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+L_0x7300e16ced98 .functor BUFT 1, C4<001>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd97c90_0 .net/2s *"_ivl_0", 2 0, L_0x7300e16ced98;  1 drivers
+v0x6165dbd97d70_0 .net/2s *"_ivl_10", 2 0, L_0x7300e16cee28;  1 drivers
+v0x6165dbd97e50_0 .net/s *"_ivl_100", 31 0, L_0x6165dbdc25b0;  1 drivers
+v0x6165dbd97f10_0 .net/s *"_ivl_104", 31 0, L_0x6165dbdc28d0;  1 drivers
+v0x6165dbd97ff0_0 .net/s *"_ivl_106", 31 0, L_0x6165dbdc2ac0;  1 drivers
+v0x6165dbd98120_0 .net/s *"_ivl_110", 31 0, L_0x6165dbdc2e00;  1 drivers
+v0x6165dbd98200_0 .net/s *"_ivl_112", 31 0, L_0x6165dbdc2ea0;  1 drivers
+v0x6165dbd982e0_0 .net/s *"_ivl_116", 31 0, L_0x6165dbdc31a0;  1 drivers
+v0x6165dbd983c0_0 .net/s *"_ivl_118", 31 0, L_0x6165dbdc2f40;  1 drivers
+L_0x7300e16cee70 .functor BUFT 1, C4<001>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd984a0_0 .net/2s *"_ivl_12", 2 0, L_0x7300e16cee70;  1 drivers
+v0x6165dbd98580_0 .net/s *"_ivl_122", 31 0, L_0x6165dbdc35a0;  1 drivers
+v0x6165dbd98660_0 .net *"_ivl_124", 31 0, L_0x6165dbdc3990;  1 drivers
+v0x6165dbd98740_0 .net *"_ivl_126", 16 0, L_0x6165dbdc3750;  1 drivers
+v0x6165dbd98820_0 .net/s *"_ivl_130", 31 0, L_0x6165dbdc3cd0;  1 drivers
+v0x6165dbd98900_0 .net *"_ivl_132", 31 0, L_0x6165dbdc4070;  1 drivers
+v0x6165dbd989e0_0 .net *"_ivl_134", 16 0, L_0x6165dbdc3e10;  1 drivers
+v0x6165dbd98ac0_0 .net/s *"_ivl_138", 15 0, L_0x6165dbdc43d0;  1 drivers
+v0x6165dbd98ba0_0 .net *"_ivl_14", 2 0, L_0x6165dbdc0270;  1 drivers
+v0x6165dbd98c80_0 .net *"_ivl_142", 14 0, L_0x6165dbdc4510;  1 drivers
+v0x6165dbd98d60_0 .net/s *"_ivl_144", 15 0, L_0x6165dbdc4880;  1 drivers
+v0x6165dbd98e40_0 .net *"_ivl_148", 14 0, L_0x6165dbdc4b60;  1 drivers
+v0x6165dbd98f20_0 .net/s *"_ivl_150", 15 0, L_0x6165dbdc4ef0;  1 drivers
+v0x6165dbd99000_0 .net *"_ivl_154", 14 0, L_0x6165dbdc4f90;  1 drivers
+v0x6165dbd990e0_0 .net/s *"_ivl_156", 15 0, L_0x6165dbdc5330;  1 drivers
+L_0x7300e16ceeb8 .functor BUFT 1, C4<001>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd991c0_0 .net/2s *"_ivl_16", 2 0, L_0x7300e16ceeb8;  1 drivers
+v0x6165dbd992a0_0 .net *"_ivl_160", 14 0, L_0x6165dbdc55a0;  1 drivers
+v0x6165dbd99380_0 .net/s *"_ivl_18", 2 0, L_0x6165dbdc0390;  1 drivers
+v0x6165dbd99460_0 .net *"_ivl_22", 31 0, L_0x6165dbdc05a0;  1 drivers
+L_0x7300e16cef00 .functor BUFT 1, C4<000000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd99540_0 .net *"_ivl_25", 29 0, L_0x7300e16cef00;  1 drivers
+L_0x7300e16cef48 .functor BUFT 1, C4<00000000000000000000000000000001>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd99620_0 .net/2u *"_ivl_26", 31 0, L_0x7300e16cef48;  1 drivers
+v0x6165dbd99700_0 .net *"_ivl_28", 31 0, L_0x6165dbdc06d0;  1 drivers
+v0x6165dbd997e0_0 .net *"_ivl_30", 2 0, L_0x6165dbdc0880;  1 drivers
+L_0x7300e16cef90 .functor BUFT 1, C4<00000000000000000000000000000011>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd998c0_0 .net/2u *"_ivl_36", 31 0, L_0x7300e16cef90;  1 drivers
+v0x6165dbd999a0_0 .net *"_ivl_38", 31 0, L_0x6165dbdc0cf0;  1 drivers
+L_0x7300e16cede0 .functor BUFT 1, C4<00000000000000000000000000000011>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd99a80_0 .net/2s *"_ivl_4", 31 0, L_0x7300e16cede0;  1 drivers
+L_0x7300e16cefd8 .functor BUFT 1, C4<000000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd99b60_0 .net *"_ivl_41", 29 0, L_0x7300e16cefd8;  1 drivers
+v0x6165dbd99c40_0 .net *"_ivl_42", 31 0, L_0x6165dbdc0d90;  1 drivers
+L_0x7300e16cf020 .functor BUFT 1, C4<00000000000000000000000000000001>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd99d20_0 .net/2u *"_ivl_44", 31 0, L_0x7300e16cf020;  1 drivers
+v0x6165dbd99e00_0 .net *"_ivl_46", 31 0, L_0x6165dbdc0f40;  1 drivers
+v0x6165dbd99ee0_0 .net *"_ivl_50", 15 0, L_0x6165dbdc1170;  1 drivers
+v0x6165dbd99fc0_0 .net *"_ivl_52", 4 0, L_0x6165dbdc1210;  1 drivers
+L_0x7300e16cf068 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd9a0a0_0 .net *"_ivl_55", 1 0, L_0x7300e16cf068;  1 drivers
+v0x6165dbd9a180_0 .net *"_ivl_58", 15 0, L_0x6165dbdc1430;  1 drivers
+v0x6165dbd9a260_0 .net *"_ivl_6", 31 0, L_0x6165dbdc0090;  1 drivers
+v0x6165dbd9a340_0 .net *"_ivl_60", 4 0, L_0x6165dbdc14d0;  1 drivers
+L_0x7300e16cf0b0 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd9a420_0 .net *"_ivl_63", 1 0, L_0x7300e16cf0b0;  1 drivers
+v0x6165dbd9a500_0 .net *"_ivl_66", 15 0, L_0x6165dbdc16b0;  1 drivers
+v0x6165dbd9a5e0_0 .net *"_ivl_68", 4 0, L_0x6165dbdc1750;  1 drivers
+L_0x7300e16cf0f8 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd9a6c0_0 .net *"_ivl_71", 1 0, L_0x7300e16cf0f8;  1 drivers
+v0x6165dbd9a7a0_0 .net *"_ivl_74", 15 0, L_0x6165dbdc15c0;  1 drivers
+v0x6165dbd9a880_0 .net *"_ivl_76", 4 0, L_0x6165dbdc1a80;  1 drivers
+L_0x7300e16cf140 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd9a960_0 .net *"_ivl_79", 1 0, L_0x7300e16cf140;  1 drivers
+v0x6165dbd9aa40_0 .net *"_ivl_82", 15 0, L_0x6165dbdc1d40;  1 drivers
+v0x6165dbd9ab20_0 .net *"_ivl_84", 3 0, L_0x6165dbdc1de0;  1 drivers
+L_0x7300e16cf188 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd9ac00_0 .net *"_ivl_87", 0 0, L_0x7300e16cf188;  1 drivers
+v0x6165dbd9ace0_0 .net *"_ivl_90", 15 0, L_0x6165dbdc2140;  1 drivers
+v0x6165dbd9adc0_0 .net *"_ivl_92", 3 0, L_0x6165dbdc21e0;  1 drivers
+L_0x7300e16cf1d0 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x6165dbd9aea0_0 .net *"_ivl_95", 0 0, L_0x7300e16cf1d0;  1 drivers
+v0x6165dbd9af80_0 .net/s *"_ivl_98", 31 0, L_0x6165dbdc24c0;  1 drivers
+v0x6165dbd9b060_0 .net/s "a_im", 15 0, L_0x6165dbdc0770;  1 drivers
+v0x6165dbd9b140_0 .net/s "a_re", 15 0, L_0x6165dbdc0ed0;  1 drivers
+v0x6165dbd9b220_0 .net/s "b_im", 15 0, L_0x6165dbdc1c80;  1 drivers
+v0x6165dbd9b300_0 .net/s "b_re", 15 0, L_0x6165dbdc1990;  1 drivers
+v0x6165dbd9b3e0_0 .net "group", 2 0, L_0x6165dbdc0180;  1 drivers
+v0x6165dbd9b4c0_0 .net "half_size", 2 0, L_0x6165dbdbfd90;  1 drivers
+v0x6165dbd9b9b0_0 .net "idx1", 2 0, L_0x6165dbdc0a10;  1 drivers
+v0x6165dbd9ba90_0 .net "idx2", 2 0, L_0x6165dbdc0b50;  1 drivers
+v0x6165dbd9bb70_0 .net/s "mult_ii", 31 0, L_0x6165dbdc2bb0;  1 drivers
+v0x6165dbd9bc50_0 .net/s "mult_ir", 31 0, L_0x6165dbdc3370;  1 drivers
+v0x6165dbd9bd30_0 .net/s "mult_ri", 31 0, L_0x6165dbdc3060;  1 drivers
+v0x6165dbd9be10_0 .net/s "mult_rr", 31 0, L_0x6165dbdc2790;  1 drivers
+v0x6165dbd9bef0_0 .net "pos", 2 0, L_0x6165dbdbda70;  1 drivers
+v0x6165dbd9bfd0_0 .net "tw_idx", 2 0, L_0x6165dbdc1080;  1 drivers
+v0x6165dbd9c0b0_0 .net/s "w_im", 15 0, L_0x6165dbdc2400;  1 drivers
+v0x6165dbd9c190_0 .net/s "w_re", 15 0, L_0x6165dbdc2040;  1 drivers
+v0x6165dbd9c270_0 .net/s "wb_im", 15 0, L_0x6165dbdc4160;  1 drivers
+v0x6165dbd9c350_0 .net/s "wb_re", 15 0, L_0x6165dbdc3a80;  1 drivers
+v0x6165dbd9c430_0 .net/s "x_im", 15 0, L_0x6165dbdc4c50;  1 drivers
+v0x6165dbd9c510_0 .net/s "x_re", 15 0, L_0x6165dbdc4790;  1 drivers
+v0x6165dbd9c5f0_0 .net/s "y_im", 15 0, L_0x6165dbdc5690;  1 drivers
+v0x6165dbd9c6d0_0 .net/s "y_re", 15 0, L_0x6165dbdc5240;  1 drivers
+L_0x6165dbdbfd90 .shift/l 3, L_0x7300e16ced98, v0x6165dbd9d640_0;
+L_0x6165dbdc0090 .shift/r 32, L_0x7300e16cede0, v0x6165dbd9d640_0;
+L_0x6165dbdc0180 .part L_0x6165dbdc0090, 0, 3;
+L_0x6165dbdc0270 .shift/l 3, L_0x7300e16cee70, v0x6165dbd9d640_0;
+L_0x6165dbdc0390 .arith/sub 3, L_0x6165dbdc0270, L_0x7300e16ceeb8;
+L_0x6165dbdc05a0 .concat [ 2 30 0 0], v0x6165dbd9d640_0, L_0x7300e16cef00;
+L_0x6165dbdc06d0 .arith/sum 32, L_0x6165dbdc05a0, L_0x7300e16cef48;
+L_0x6165dbdc0880 .shift/l 3, L_0x6165dbdc0180, L_0x6165dbdc06d0;
+L_0x6165dbdc0a10 .arith/sum 3, L_0x6165dbdc0880, L_0x6165dbdbda70;
+L_0x6165dbdc0b50 .arith/sum 3, L_0x6165dbdc0a10, L_0x6165dbdbfd90;
+L_0x6165dbdc0cf0 .concat [ 2 30 0 0], v0x6165dbd9d640_0, L_0x7300e16cefd8;
+L_0x6165dbdc0d90 .arith/sub 32, L_0x7300e16cef90, L_0x6165dbdc0cf0;
+L_0x6165dbdc0f40 .arith/sub 32, L_0x6165dbdc0d90, L_0x7300e16cf020;
+L_0x6165dbdc1080 .shift/l 3, L_0x6165dbdbda70, L_0x6165dbdc0f40;
+L_0x6165dbdc1170 .array/port v0x6165dbd9d4c0, L_0x6165dbdc1210;
+L_0x6165dbdc1210 .concat [ 3 2 0 0], L_0x6165dbdc0a10, L_0x7300e16cf068;
+L_0x6165dbdc1430 .array/port v0x6165dbd9d400, L_0x6165dbdc14d0;
+L_0x6165dbdc14d0 .concat [ 3 2 0 0], L_0x6165dbdc0a10, L_0x7300e16cf0b0;
+L_0x6165dbdc16b0 .array/port v0x6165dbd9d4c0, L_0x6165dbdc1750;
+L_0x6165dbdc1750 .concat [ 3 2 0 0], L_0x6165dbdc0b50, L_0x7300e16cf0f8;
+L_0x6165dbdc15c0 .array/port v0x6165dbd9d400, L_0x6165dbdc1a80;
+L_0x6165dbdc1a80 .concat [ 3 2 0 0], L_0x6165dbdc0b50, L_0x7300e16cf140;
+L_0x6165dbdc1d40 .array/port v0x6165dbd9da60, L_0x6165dbdc1de0;
+L_0x6165dbdc1de0 .concat [ 3 1 0 0], L_0x6165dbdc1080, L_0x7300e16cf188;
+L_0x6165dbdc2140 .array/port v0x6165dbd9d9a0, L_0x6165dbdc21e0;
+L_0x6165dbdc21e0 .concat [ 3 1 0 0], L_0x6165dbdc1080, L_0x7300e16cf1d0;
+L_0x6165dbdc24c0 .extend/s 32, L_0x6165dbdc2040;
+L_0x6165dbdc25b0 .extend/s 32, L_0x6165dbdc1990;
+L_0x6165dbdc2790 .arith/mult 32, L_0x6165dbdc24c0, L_0x6165dbdc25b0;
+L_0x6165dbdc28d0 .extend/s 32, L_0x6165dbdc2400;
+L_0x6165dbdc2ac0 .extend/s 32, L_0x6165dbdc1c80;
+L_0x6165dbdc2bb0 .arith/mult 32, L_0x6165dbdc28d0, L_0x6165dbdc2ac0;
+L_0x6165dbdc2e00 .extend/s 32, L_0x6165dbdc2040;
+L_0x6165dbdc2ea0 .extend/s 32, L_0x6165dbdc1c80;
+L_0x6165dbdc3060 .arith/mult 32, L_0x6165dbdc2e00, L_0x6165dbdc2ea0;
+L_0x6165dbdc31a0 .extend/s 32, L_0x6165dbdc2400;
+L_0x6165dbdc2f40 .extend/s 32, L_0x6165dbdc1990;
+L_0x6165dbdc3370 .arith/mult 32, L_0x6165dbdc31a0, L_0x6165dbdc2f40;
+L_0x6165dbdc35a0 .arith/sub 32, L_0x6165dbdc2790, L_0x6165dbdc2bb0;
+L_0x6165dbdc3750 .part L_0x6165dbdc35a0, 15, 17;
+L_0x6165dbdc3990 .extend/s 32, L_0x6165dbdc3750;
+L_0x6165dbdc3a80 .part L_0x6165dbdc3990, 0, 16;
+L_0x6165dbdc3cd0 .arith/sum 32, L_0x6165dbdc3060, L_0x6165dbdc3370;
+L_0x6165dbdc3e10 .part L_0x6165dbdc3cd0, 15, 17;
+L_0x6165dbdc4070 .extend/s 32, L_0x6165dbdc3e10;
+L_0x6165dbdc4160 .part L_0x6165dbdc4070, 0, 16;
+L_0x6165dbdc43d0 .arith/sum 16, L_0x6165dbdc0ed0, L_0x6165dbdc3a80;
+L_0x6165dbdc4510 .part L_0x6165dbdc43d0, 1, 15;
+L_0x6165dbdc4790 .extend/s 16, L_0x6165dbdc4510;
+L_0x6165dbdc4880 .arith/sum 16, L_0x6165dbdc0770, L_0x6165dbdc4160;
+L_0x6165dbdc4b60 .part L_0x6165dbdc4880, 1, 15;
+L_0x6165dbdc4c50 .extend/s 16, L_0x6165dbdc4b60;
+L_0x6165dbdc4ef0 .arith/sub 16, L_0x6165dbdc0ed0, L_0x6165dbdc3a80;
+L_0x6165dbdc4f90 .part L_0x6165dbdc4ef0, 1, 15;
+L_0x6165dbdc5240 .extend/s 16, L_0x6165dbdc4f90;
+L_0x6165dbdc5330 .arith/sub 16, L_0x6165dbdc0770, L_0x6165dbdc4160;
+L_0x6165dbdc55a0 .part L_0x6165dbdc5330, 1, 15;
+L_0x6165dbdc5690 .extend/s 16, L_0x6165dbdc55a0;
+S_0x6165dbd9c7b0 .scope function.vec4.s32, "bit_reverse" "bit_reverse" 4 54, 4 54 0, S_0x6165dbd5ab90;
+ .timescale 0 0;
+; Variable bit_reverse is vec4 return value of scope S_0x6165dbd9c7b0
+v0x6165dbd9ca90_0 .var/i "i", 31 0;
+v0x6165dbd9cb70_0 .var "value", 31 0;
+v0x6165dbd9cc30_0 .var "width", 31 0;
+TD_fft_tb.dut.bit_reverse ;
+    %pushi/vec4 0, 0, 32;
+    %ret/vec4 0, 0, 32;  Assign to bit_reverse (store_vec4_to_lval)
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x6165dbd9ca90_0, 0, 32;
+T_0.0 ;
+    %load/vec4 v0x6165dbd9ca90_0;
+    %load/vec4 v0x6165dbd9cc30_0;
+    %cmp/u;
+    %jmp/0xz T_0.1, 5;
+    %retload/vec4 0; Load bit_reverse (draw_signal_vec4)
+    %load/vec4 v0x6165dbd9cb70_0;
+    %load/vec4 v0x6165dbd9ca90_0;
+    %ix/vec4 4;
+    %shiftr 4;
+    %pushi/vec4 1, 0, 32;
+    %and;
+    %load/vec4 v0x6165dbd9cc30_0;
+    %subi 1, 0, 32;
+    %load/vec4 v0x6165dbd9ca90_0;
+    %sub;
+    %ix/vec4 4;
+    %shiftl 4;
+    %or;
+    %ret/vec4 0, 0, 32;  Assign to bit_reverse (store_vec4_to_lval)
+    %load/vec4 v0x6165dbd9ca90_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0x6165dbd9ca90_0, 0, 32;
+    %jmp T_0.0;
+T_0.1 ;
+    %end;
+S_0x6165dbd9dc40 .scope task, "load_samples" "load_samples" 3 43, 3 43 0, S_0x6165dbd5b980;
+ .timescale 0 0;
+v0x6165dbd9ddf0_0 .var/s "fixed_im", 15 0;
+v0x6165dbd9ded0_0 .var/s "fixed_re", 15 0;
+v0x6165dbd9dfb0_0 .var/i "k", 31 0;
+TD_fft_tb.load_samples ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x6165dbd9dfb0_0, 0, 32;
+T_1.2 ;
+    %load/vec4 v0x6165dbd9dfb0_0;
+    %cmpi/s 8, 0, 32;
+    %jmp/0xz T_1.3, 5;
+    %ix/getv/s 4, v0x6165dbd9dfb0_0;
+    %load/ar v0x6165dbd9edf0, 4;
+    %pushi/real 2147418112, 4080; load=32767.0
+    %mul/wr;
+    %vpi_func 3 48 "$rtoi" 32, W<0,r> {0 1 0};
+    %pad/s 16;
+    %store/vec4 v0x6165dbd9ded0_0, 0, 16;
+    %ix/getv/s 4, v0x6165dbd9dfb0_0;
+    %load/ar v0x6165dbd9ed50, 4;
+    %pushi/real 2147418112, 4080; load=32767.0
+    %mul/wr;
+    %vpi_func 3 49 "$rtoi" 32, W<0,r> {0 1 0};
+    %pad/s 16;
+    %store/vec4 v0x6165dbd9ddf0_0, 0, 16;
+    %load/vec4 v0x6165dbd9ded0_0;
+    %load/vec4 v0x6165dbd9dfb0_0;
+    %muli 16, 0, 32;
+    %ix/vec4/s 4;
+    %store/vec4 v0x6165dbd9e7e0_0, 4, 16;
+    %load/vec4 v0x6165dbd9ddf0_0;
+    %load/vec4 v0x6165dbd9dfb0_0;
+    %muli 16, 0, 32;
+    %ix/vec4/s 4;
+    %store/vec4 v0x6165dbd9e710_0, 4, 16;
+    %load/vec4 v0x6165dbd9dfb0_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0x6165dbd9dfb0_0, 0, 32;
+    %jmp T_1.2;
+T_1.3 ;
+    %end;
+S_0x6165dbd9e070 .scope task, "run_test" "run_test" 3 59, 3 59 0, S_0x6165dbd5b980;
+ .timescale 0 0;
+v0x6165dbd9e270_0 .var/i "k", 31 0;
+v0x6165dbd9e370_0 .var/real "out_im", 0 0;
+v0x6165dbd9e430_0 .var/real "out_re", 0 0;
+v0x6165dbd9e4d0_0 .var "test_name", 255 0;
+E_0x6165dbcffac0 .event anyedge, v0x6165dbd9d260_0;
+TD_fft_tb.run_test ;
+    %fork TD_fft_tb.load_samples, S_0x6165dbd9dc40;
+    %join;
+    %wait E_0x6165dbcfc460;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x6165dbd9ee90_0, 0, 1;
+    %wait E_0x6165dbcfc460;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x6165dbd9ee90_0, 0, 1;
+T_2.4 ;
+    %load/vec4 v0x6165dbd9ea70_0;
+    %pushi/vec4 1, 0, 1;
+    %cmp/e;
+    %flag_get/vec4 4;
+    %cmpi/ne 1, 0, 1;
+    %jmp/0xz T_2.5, 6;
+    %wait E_0x6165dbcffac0;
+    %jmp T_2.4;
+T_2.5 ;
+    %wait E_0x6165dbcfc460;
+    %vpi_call/w 3 72 "$fwrite", v0x6165dbd9eb40_0, "# TEST %0s\012", v0x6165dbd9e4d0_0 {0 0 0};
+    %vpi_call/w 3 73 "$fwrite", v0x6165dbd9eb40_0, "N %0d\012", P_0x6165dbd0d320 {0 0 0};
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x6165dbd9e270_0, 0, 32;
+T_2.6 ;
+    %load/vec4 v0x6165dbd9e270_0;
+    %cmpi/s 8, 0, 32;
+    %jmp/0xz T_2.7, 5;
+    %load/vec4 v0x6165dbd9e9a0_0;
+    %load/vec4 v0x6165dbd9e270_0;
+    %muli 16, 0, 32;
+    %part/s 16;
+    %vpi_func/r 3 75 "$itor", S<0,vec4,s16> {1 0 0};
+    %pushi/real 1073741824, 4081; load=32768.0
+    %div/wr;
+    %store/real v0x6165dbd9e430_0;
+    %load/vec4 v0x6165dbd9e8b0_0;
+    %load/vec4 v0x6165dbd9e270_0;
+    %muli 16, 0, 32;
+    %part/s 16;
+    %vpi_func/r 3 76 "$itor", S<0,vec4,s16> {1 0 0};
+    %pushi/real 1073741824, 4081; load=32768.0
+    %div/wr;
+    %store/real v0x6165dbd9e370_0;
+    %vpi_call/w 3 77 "$fwrite", v0x6165dbd9eb40_0, "%0d %f %f %f %f\012", v0x6165dbd9e270_0, &A<v0x6165dbd9edf0, v0x6165dbd9e270_0 >, &A<v0x6165dbd9ed50, v0x6165dbd9e270_0 >, v0x6165dbd9e430_0, v0x6165dbd9e370_0 {0 0 0};
+    %load/vec4 v0x6165dbd9e270_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0x6165dbd9e270_0, 0, 32;
+    %jmp T_2.6;
+T_2.7 ;
+    %vpi_call/w 3 79 "$fwrite", v0x6165dbd9eb40_0, "\012" {0 0 0};
+    %vpi_call/w 3 81 "$display", "---- %0s ----", v0x6165dbd9e4d0_0 {0 0 0};
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x6165dbd9e270_0, 0, 32;
+T_2.8 ;
+    %load/vec4 v0x6165dbd9e270_0;
+    %cmpi/s 8, 0, 32;
+    %jmp/0xz T_2.9, 5;
+    %load/vec4 v0x6165dbd9e9a0_0;
+    %load/vec4 v0x6165dbd9e270_0;
+    %muli 16, 0, 32;
+    %part/s 16;
+    %vpi_func/r 3 83 "$itor", S<0,vec4,s16> {1 0 0};
+    %pushi/real 1073741824, 4081; load=32768.0
+    %div/wr;
+    %store/real v0x6165dbd9e430_0;
+    %load/vec4 v0x6165dbd9e8b0_0;
+    %load/vec4 v0x6165dbd9e270_0;
+    %muli 16, 0, 32;
+    %part/s 16;
+    %vpi_func/r 3 84 "$itor", S<0,vec4,s16> {1 0 0};
+    %pushi/real 1073741824, 4081; load=32768.0
+    %div/wr;
+    %store/real v0x6165dbd9e370_0;
+    %load/real v0x6165dbd9e430_0;
+    %load/real v0x6165dbd9e430_0;
+    %mul/wr;
+    %load/real v0x6165dbd9e370_0;
+    %load/real v0x6165dbd9e370_0;
+    %mul/wr;
+    %add/wr;
+    %vpi_func/r 3 86 "$sqrt", W<0,r> {0 1 0};
+    %vpi_call/w 3 85 "$display", "bin %0d : re=%f  im=%f  mag=%f", v0x6165dbd9e270_0, v0x6165dbd9e430_0, v0x6165dbd9e370_0, W<0,r> {0 1 0};
+    %load/vec4 v0x6165dbd9e270_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0x6165dbd9e270_0, 0, 32;
+    %jmp T_2.8;
+T_2.9 ;
+    %end;
+    .scope S_0x6165dbd59da0;
+T_3 ;
+    %wait E_0x6165dbcfc460;
+    %load/vec4 v0x6165dbd9d7e0_0;
+    %cmpi/e 2, 0, 3;
+    %jmp/0xz  T_3.0, 4;
+    %load/vec4 v0x6165dbd8dc40_0;
+    %load/vec4 v0x6165dbd8d0e0_0;
+    %pad/u 5;
+    %ix/vec4 3;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v0x6165dbd9d4c0, 0, 4;
+    %load/vec4 v0x6165dbd8db60_0;
+    %load/vec4 v0x6165dbd8d0e0_0;
+    %pad/u 5;
+    %ix/vec4 3;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v0x6165dbd9d400, 0, 4;
+    %load/vec4 v0x6165dbd8de00_0;
+    %load/vec4 v0x6165dbd8d1c0_0;
+    %pad/u 5;
+    %ix/vec4 3;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v0x6165dbd9d4c0, 0, 4;
+    %load/vec4 v0x6165dbd8dd20_0;
+    %load/vec4 v0x6165dbd8d1c0_0;
+    %pad/u 5;
+    %ix/vec4 3;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v0x6165dbd9d400, 0, 4;
+T_3.0 ;
+    %jmp T_3;
+    .thread T_3;
+    .scope S_0x6165dbd8dee0;
+T_4 ;
+    %wait E_0x6165dbcfc460;
+    %load/vec4 v0x6165dbd9d7e0_0;
+    %cmpi/e 2, 0, 3;
+    %jmp/0xz  T_4.0, 4;
+    %load/vec4 v0x6165dbd929d0_0;
+    %load/vec4 v0x6165dbd91e70_0;
+    %pad/u 5;
+    %ix/vec4 3;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v0x6165dbd9d4c0, 0, 4;
+    %load/vec4 v0x6165dbd928f0_0;
+    %load/vec4 v0x6165dbd91e70_0;
+    %pad/u 5;
+    %ix/vec4 3;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v0x6165dbd9d400, 0, 4;
+    %load/vec4 v0x6165dbd92b90_0;
+    %load/vec4 v0x6165dbd91f50_0;
+    %pad/u 5;
+    %ix/vec4 3;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v0x6165dbd9d4c0, 0, 4;
+    %load/vec4 v0x6165dbd92ab0_0;
+    %load/vec4 v0x6165dbd91f50_0;
+    %pad/u 5;
+    %ix/vec4 3;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v0x6165dbd9d400, 0, 4;
+T_4.0 ;
+    %jmp T_4;
+    .thread T_4;
+    .scope S_0x6165dbd92c70;
+T_5 ;
+    %wait E_0x6165dbcfc460;
+    %load/vec4 v0x6165dbd9d7e0_0;
+    %cmpi/e 2, 0, 3;
+    %jmp/0xz  T_5.0, 4;
+    %load/vec4 v0x6165dbd97760_0;
+    %load/vec4 v0x6165dbd96c00_0;
+    %pad/u 5;
+    %ix/vec4 3;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v0x6165dbd9d4c0, 0, 4;
+    %load/vec4 v0x6165dbd97680_0;
+    %load/vec4 v0x6165dbd96c00_0;
+    %pad/u 5;
+    %ix/vec4 3;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v0x6165dbd9d400, 0, 4;
+    %load/vec4 v0x6165dbd97920_0;
+    %load/vec4 v0x6165dbd96ce0_0;
+    %pad/u 5;
+    %ix/vec4 3;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v0x6165dbd9d4c0, 0, 4;
+    %load/vec4 v0x6165dbd97840_0;
+    %load/vec4 v0x6165dbd96ce0_0;
+    %pad/u 5;
+    %ix/vec4 3;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v0x6165dbd9d400, 0, 4;
+T_5.0 ;
+    %jmp T_5;
+    .thread T_5;
+    .scope S_0x6165dbd97a00;
+T_6 ;
+    %wait E_0x6165dbcfc460;
+    %load/vec4 v0x6165dbd9d7e0_0;
+    %cmpi/e 2, 0, 3;
+    %jmp/0xz  T_6.0, 4;
+    %load/vec4 v0x6165dbd9c510_0;
+    %load/vec4 v0x6165dbd9b9b0_0;
+    %pad/u 5;
+    %ix/vec4 3;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v0x6165dbd9d4c0, 0, 4;
+    %load/vec4 v0x6165dbd9c430_0;
+    %load/vec4 v0x6165dbd9b9b0_0;
+    %pad/u 5;
+    %ix/vec4 3;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v0x6165dbd9d400, 0, 4;
+    %load/vec4 v0x6165dbd9c6d0_0;
+    %load/vec4 v0x6165dbd9ba90_0;
+    %pad/u 5;
+    %ix/vec4 3;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v0x6165dbd9d4c0, 0, 4;
+    %load/vec4 v0x6165dbd9c5f0_0;
+    %load/vec4 v0x6165dbd9ba90_0;
+    %pad/u 5;
+    %ix/vec4 3;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v0x6165dbd9d400, 0, 4;
+T_6.0 ;
+    %jmp T_6;
+    .thread T_6;
+    .scope S_0x6165dbd5ab90;
+T_7 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x6165dbd9d8c0_0, 0, 32;
+T_7.0 ;
+    %load/vec4 v0x6165dbd9d8c0_0;
+    %cmpi/s 4, 0, 32;
+    %jmp/0xz T_7.1, 5;
+    %pushi/real 1686629713, 4068; load=6.28319
+    %pushi/real 273681, 4046; load=6.28319
+    %add/wr;
+    %load/vec4 v0x6165dbd9d8c0_0;
+    %cvt/rv/s;
+    %mul/wr;
+    %pushi/vec4 8, 0, 32;
+    %cvt/rv/s;
+    %div/wr;
+    %vpi_func/r 4 46 "$cos", W<0,r> {0 1 0};
+    %pushi/real 2147418112, 4080; load=32767.0
+    %mul/wr;
+    %vpi_func 4 46 "$rtoi" 32, W<0,r> {0 1 0};
+    %pad/s 16;
+    %ix/getv/s 4, v0x6165dbd9d8c0_0;
+    %store/vec4a v0x6165dbd9da60, 4, 0;
+    %pushi/real 1073741824, 20450; load=-1.00000
+    %pushi/real 1686629713, 4068; load=6.28319
+    %pushi/real 273681, 4046; load=6.28319
+    %add/wr;
+    %load/vec4 v0x6165dbd9d8c0_0;
+    %cvt/rv/s;
+    %mul/wr;
+    %pushi/vec4 8, 0, 32;
+    %cvt/rv/s;
+    %div/wr;
+    %vpi_func/r 4 47 "$sin", W<0,r> {0 1 0};
+    %mul/wr;
+    %pushi/real 2147418112, 4080; load=32767.0
+    %mul/wr;
+    %vpi_func 4 47 "$rtoi" 32, W<0,r> {0 1 0};
+    %pad/s 16;
+    %ix/getv/s 4, v0x6165dbd9d8c0_0;
+    %store/vec4a v0x6165dbd9d9a0, 4, 0;
+    %load/vec4 v0x6165dbd9d8c0_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0x6165dbd9d8c0_0, 0, 32;
+    %jmp T_7.0;
+T_7.1 ;
+    %end;
+    .thread T_7;
+    .scope S_0x6165dbd5ab90;
+T_8 ;
+    %wait E_0x6165dbcfe490;
+    %load/vec4 v0x6165dbd9d580_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_8.0, 8;
+    %pushi/vec4 0, 0, 3;
+    %assign/vec4 v0x6165dbd9d7e0_0, 0;
+    %pushi/vec4 0, 0, 2;
+    %assign/vec4 v0x6165dbd9d640_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x6165dbd9d260_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x6165dbd9cd10_0, 0;
+    %pushi/vec4 0, 0, 128;
+    %assign/vec4 v0x6165dbd9d180_0, 0;
+    %pushi/vec4 0, 0, 128;
+    %assign/vec4 v0x6165dbd9d050_0, 0;
+    %jmp T_8.1;
+T_8.0 ;
+    %load/vec4 v0x6165dbd9d7e0_0;
+    %dup/vec4;
+    %pushi/vec4 0, 0, 3;
+    %cmp/u;
+    %jmp/1 T_8.2, 6;
+    %dup/vec4;
+    %pushi/vec4 1, 0, 3;
+    %cmp/u;
+    %jmp/1 T_8.3, 6;
+    %dup/vec4;
+    %pushi/vec4 2, 0, 3;
+    %cmp/u;
+    %jmp/1 T_8.4, 6;
+    %dup/vec4;
+    %pushi/vec4 3, 0, 3;
+    %cmp/u;
+    %jmp/1 T_8.5, 6;
+    %dup/vec4;
+    %pushi/vec4 4, 0, 3;
+    %cmp/u;
+    %jmp/1 T_8.6, 6;
+    %dup/vec4;
+    %pushi/vec4 5, 0, 3;
+    %cmp/u;
+    %jmp/1 T_8.7, 6;
+    %pushi/vec4 0, 0, 3;
+    %assign/vec4 v0x6165dbd9d7e0_0, 0;
+    %jmp T_8.9;
+T_8.2 ;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x6165dbd9d260_0, 0;
+    %load/vec4 v0x6165dbd9d720_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_8.10, 8;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0x6165dbd9cd10_0, 0;
+    %pushi/vec4 1, 0, 3;
+    %assign/vec4 v0x6165dbd9d7e0_0, 0;
+T_8.10 ;
+    %jmp T_8.9;
+T_8.3 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x6165dbd9d320_0, 0, 32;
+T_8.12 ;
+    %load/vec4 v0x6165dbd9d320_0;
+    %cmpi/s 8, 0, 32;
+    %jmp/0xz T_8.13, 5;
+    %load/vec4 v0x6165dbd9cf70_0;
+    %load/vec4 v0x6165dbd9d320_0;
+    %muli 16, 0, 32;
+    %part/s 16;
+    %load/vec4 v0x6165dbd9d320_0;
+    %pushi/vec4 3, 0, 32;
+    %store/vec4 v0x6165dbd9cc30_0, 0, 32;
+    %store/vec4 v0x6165dbd9cb70_0, 0, 32;
+    %callf/vec4 TD_fft_tb.dut.bit_reverse, S_0x6165dbd9c7b0;
+    %ix/vec4 3;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v0x6165dbd9d4c0, 0, 4;
+    %load/vec4 v0x6165dbd9ceb0_0;
+    %load/vec4 v0x6165dbd9d320_0;
+    %muli 16, 0, 32;
+    %part/s 16;
+    %load/vec4 v0x6165dbd9d320_0;
+    %pushi/vec4 3, 0, 32;
+    %store/vec4 v0x6165dbd9cc30_0, 0, 32;
+    %store/vec4 v0x6165dbd9cb70_0, 0, 32;
+    %callf/vec4 TD_fft_tb.dut.bit_reverse, S_0x6165dbd9c7b0;
+    %ix/vec4 3;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v0x6165dbd9d400, 0, 4;
+    %load/vec4 v0x6165dbd9d320_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0x6165dbd9d320_0, 0, 32;
+    %jmp T_8.12;
+T_8.13 ;
+    %pushi/vec4 0, 0, 2;
+    %assign/vec4 v0x6165dbd9d640_0, 0;
+    %pushi/vec4 2, 0, 3;
+    %assign/vec4 v0x6165dbd9d7e0_0, 0;
+    %jmp T_8.9;
+T_8.4 ;
+    %pushi/vec4 3, 0, 3;
+    %assign/vec4 v0x6165dbd9d7e0_0, 0;
+    %jmp T_8.9;
+T_8.5 ;
+    %load/vec4 v0x6165dbd9d640_0;
+    %pad/u 32;
+    %cmpi/e 2, 0, 32;
+    %jmp/0xz  T_8.14, 4;
+    %pushi/vec4 4, 0, 3;
+    %assign/vec4 v0x6165dbd9d7e0_0, 0;
+    %jmp T_8.15;
+T_8.14 ;
+    %load/vec4 v0x6165dbd9d640_0;
+    %addi 1, 0, 2;
+    %assign/vec4 v0x6165dbd9d640_0, 0;
+    %pushi/vec4 2, 0, 3;
+    %assign/vec4 v0x6165dbd9d7e0_0, 0;
+T_8.15 ;
+    %jmp T_8.9;
+T_8.6 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x6165dbd9d320_0, 0, 32;
+T_8.16 ;
+    %load/vec4 v0x6165dbd9d320_0;
+    %cmpi/s 8, 0, 32;
+    %jmp/0xz T_8.17, 5;
+    %ix/getv/s 4, v0x6165dbd9d320_0;
+    %load/vec4a v0x6165dbd9d4c0, 4;
+    %ix/load 5, 0, 0;
+    %load/vec4 v0x6165dbd9d320_0;
+    %muli 16, 0, 32;
+    %ix/vec4/s 4;
+    %assign/vec4/off/d v0x6165dbd9d180_0, 4, 5;
+    %ix/getv/s 4, v0x6165dbd9d320_0;
+    %load/vec4a v0x6165dbd9d400, 4;
+    %ix/load 5, 0, 0;
+    %load/vec4 v0x6165dbd9d320_0;
+    %muli 16, 0, 32;
+    %ix/vec4/s 4;
+    %assign/vec4/off/d v0x6165dbd9d050_0, 4, 5;
+    %load/vec4 v0x6165dbd9d320_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0x6165dbd9d320_0, 0, 32;
+    %jmp T_8.16;
+T_8.17 ;
+    %pushi/vec4 5, 0, 3;
+    %assign/vec4 v0x6165dbd9d7e0_0, 0;
+    %jmp T_8.9;
+T_8.7 ;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0x6165dbd9d260_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x6165dbd9cd10_0, 0;
+    %pushi/vec4 0, 0, 3;
+    %assign/vec4 v0x6165dbd9d7e0_0, 0;
+    %jmp T_8.9;
+T_8.9 ;
+    %pop/vec4 1;
+T_8.1 ;
+    %jmp T_8;
+    .thread T_8;
+    .scope S_0x6165dbd5b980;
+T_9 ;
+    %delay 5, 0;
+    %load/vec4 v0x6165dbd9e670_0;
+    %inv;
+    %store/vec4 v0x6165dbd9e670_0, 0, 1;
+    %jmp T_9;
+    .thread T_9;
+    .scope S_0x6165dbd5b980;
+T_10 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x6165dbd9e670_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x6165dbd9ec80_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x6165dbd9ee90_0, 0, 1;
+    %pushi/vec4 0, 0, 128;
+    %store/vec4 v0x6165dbd9e7e0_0, 0, 128;
+    %pushi/vec4 0, 0, 128;
+    %store/vec4 v0x6165dbd9e710_0, 0, 128;
+    %vpi_func 3 98 "$fopen" 32, "fft_results.txt", "w" {0 0 0};
+    %store/vec4 v0x6165dbd9eb40_0, 0, 32;
+    %pushi/vec4 3, 0, 32;
+T_10.0 %dup/vec4;
+    %pushi/vec4 0, 0, 32;
+    %cmp/s;
+    %jmp/1xz T_10.1, 5;
+    %jmp/1 T_10.1, 4;
+    %pushi/vec4 1, 0, 32;
+    %sub;
+    %wait E_0x6165dbcfc460;
+    %jmp T_10.0;
+T_10.1 ;
+    %pop/vec4 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x6165dbd9ec80_0, 0, 1;
+    %pushi/vec4 2, 0, 32;
+T_10.2 %dup/vec4;
+    %pushi/vec4 0, 0, 32;
+    %cmp/s;
+    %jmp/1xz T_10.3, 5;
+    %jmp/1 T_10.3, 4;
+    %pushi/vec4 1, 0, 32;
+    %sub;
+    %wait E_0x6165dbcfc460;
+    %jmp T_10.2;
+T_10.3 ;
+    %pop/vec4 1;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x6165dbd9ebe0_0, 0, 32;
+T_10.4 ;
+    %load/vec4 v0x6165dbd9ebe0_0;
+    %cmpi/s 8, 0, 32;
+    %jmp/0xz T_10.5, 5;
+    %load/vec4 v0x6165dbd9ebe0_0;
+    %pushi/vec4 0, 0, 32;
+    %cmp/e;
+    %flag_get/vec4 4;
+    %flag_set/vec4 8;
+    %jmp/1  T_10.6, 8;
+    %pushi/real 0, 4065; load=0.00000
+    %jmp/0  T_10.7, 8; End of false expr.
+    %pushi/real 1073741824, 4066; load=1.00000
+    %blend/wr;
+    %jmp  T_10.7; End of blend
+T_10.6 ;
+    %pushi/real 1073741824, 4066; load=1.00000
+T_10.7 ;
+    %ix/getv/s 4, v0x6165dbd9ebe0_0;
+    %store/reala v0x6165dbd9edf0, 4;
+    %pushi/real 0, 4065; load=0.00000
+    %ix/getv/s 4, v0x6165dbd9ebe0_0;
+    %store/reala v0x6165dbd9ed50, 4;
+    %load/vec4 v0x6165dbd9ebe0_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0x6165dbd9ebe0_0, 0, 32;
+    %jmp T_10.4;
+T_10.5 ;
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 6909296, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1970041701, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %store/vec4 v0x6165dbd9e4d0_0, 0, 256;
+    %fork TD_fft_tb.run_test, S_0x6165dbd9e070;
+    %join;
+    %pushi/vec4 3, 0, 32;
+T_10.8 %dup/vec4;
+    %pushi/vec4 0, 0, 32;
+    %cmp/s;
+    %jmp/1xz T_10.9, 5;
+    %jmp/1 T_10.9, 4;
+    %pushi/vec4 1, 0, 32;
+    %sub;
+    %wait E_0x6165dbcfc460;
+    %jmp T_10.8;
+T_10.9 ;
+    %pop/vec4 1;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x6165dbd9ebe0_0, 0, 32;
+T_10.10 ;
+    %load/vec4 v0x6165dbd9ebe0_0;
+    %cmpi/s 8, 0, 32;
+    %jmp/0xz T_10.11, 5;
+    %pushi/real 1073741824, 4065; load=0.500000
+    %pushi/real 1686629713, 4069; load=12.5664
+    %pushi/real 273681, 4047; load=12.5664
+    %add/wr;
+    %load/vec4 v0x6165dbd9ebe0_0;
+    %cvt/rv/s;
+    %mul/wr;
+    %pushi/vec4 8, 0, 32;
+    %cvt/rv/s;
+    %div/wr;
+    %vpi_func/r 3 115 "$sin", W<0,r> {0 1 0};
+    %mul/wr;
+    %ix/getv/s 4, v0x6165dbd9ebe0_0;
+    %store/reala v0x6165dbd9edf0, 4;
+    %pushi/real 0, 4065; load=0.00000
+    %ix/getv/s 4, v0x6165dbd9ebe0_0;
+    %store/reala v0x6165dbd9ed50, 4;
+    %load/vec4 v0x6165dbd9ebe0_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0x6165dbd9ebe0_0, 0, 32;
+    %jmp T_10.10;
+T_10.11 ;
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 115, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1768842591, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1651076658, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %store/vec4 v0x6165dbd9e4d0_0, 0, 256;
+    %fork TD_fft_tb.run_test, S_0x6165dbd9e070;
+    %join;
+    %pushi/vec4 3, 0, 32;
+T_10.12 %dup/vec4;
+    %pushi/vec4 0, 0, 32;
+    %cmp/s;
+    %jmp/1xz T_10.13, 5;
+    %jmp/1 T_10.13, 4;
+    %pushi/vec4 1, 0, 32;
+    %sub;
+    %wait E_0x6165dbcfc460;
+    %jmp T_10.12;
+T_10.13 ;
+    %pop/vec4 1;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x6165dbd9ebe0_0, 0, 32;
+T_10.14 ;
+    %load/vec4 v0x6165dbd9ebe0_0;
+    %cmpi/s 8, 0, 32;
+    %jmp/0xz T_10.15, 5;
+    %pushi/real 1717986918, 4063; load=0.200000
+    %pushi/real 1677722, 4041; load=0.200000
+    %add/wr;
+    %pushi/real 1288490188, 4064; load=0.300000
+    %pushi/real 3355443, 4042; load=0.300000
+    %add/wr;
+    %pushi/real 1686629713, 4068; load=6.28319
+    %pushi/real 273681, 4046; load=6.28319
+    %add/wr;
+    %load/vec4 v0x6165dbd9ebe0_0;
+    %cvt/rv/s;
+    %mul/wr;
+    %pushi/vec4 8, 0, 32;
+    %cvt/rv/s;
+    %div/wr;
+    %vpi_func/r 3 125 "$cos", W<0,r> {0 1 0};
+    %mul/wr;
+    %add/wr;
+    %pushi/real 1288490188, 4063; load=0.150000
+    %pushi/real 3355443, 4041; load=0.150000
+    %add/wr;
+    %pushi/real 1264972284, 4070; load=18.8496
+    %pushi/real 3350989, 4048; load=18.8496
+    %add/wr;
+    %load/vec4 v0x6165dbd9ebe0_0;
+    %cvt/rv/s;
+    %mul/wr;
+    %pushi/vec4 8, 0, 32;
+    %cvt/rv/s;
+    %div/wr;
+    %vpi_func/r 3 126 "$sin", W<0,r> {0 1 0};
+    %mul/wr;
+    %add/wr;
+    %ix/getv/s 4, v0x6165dbd9ebe0_0;
+    %store/reala v0x6165dbd9edf0, 4;
+    %pushi/real 0, 4065; load=0.00000
+    %ix/getv/s 4, v0x6165dbd9ebe0_0;
+    %store/reala v0x6165dbd9ed50, 4;
+    %load/vec4 v0x6165dbd9ebe0_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0x6165dbd9ebe0_0, 0, 32;
+    %jmp T_10.14;
+T_10.15 ;
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 7170424, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1701076852, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1869505907, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %store/vec4 v0x6165dbd9e4d0_0, 0, 256;
+    %fork TD_fft_tb.run_test, S_0x6165dbd9e070;
+    %join;
+    %pushi/vec4 3, 0, 32;
+T_10.16 %dup/vec4;
+    %pushi/vec4 0, 0, 32;
+    %cmp/s;
+    %jmp/1xz T_10.17, 5;
+    %jmp/1 T_10.17, 4;
+    %pushi/vec4 1, 0, 32;
+    %sub;
+    %wait E_0x6165dbcfc460;
+    %jmp T_10.16;
+T_10.17 ;
+    %pop/vec4 1;
+    %vpi_call/w 3 133 "$fclose", v0x6165dbd9eb40_0 {0 0 0};
+    %vpi_call/w 3 134 "$display", "All tests complete. Results written to fft_results.txt" {0 0 0};
+    %vpi_call/w 3 135 "$finish" {0 0 0};
+    %end;
+    .thread T_10;
+    .scope S_0x6165dbd5b980;
+T_11 ;
+    %delay 100000, 0;
+    %vpi_call/w 3 141 "$display", "ERROR: simulation timeout" {0 0 0};
+    %vpi_call/w 3 142 "$finish" {0 0 0};
+    %end;
+    .thread T_11;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "fft_tb.v";
+    "fft_top.v";
